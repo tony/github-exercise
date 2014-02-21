@@ -183,12 +183,10 @@ CSS:
 Javascript: 
 
 - Linting JS
-- Requirejs config:
-
-  - defaults application in ``index.js`` (note, .js not .html) which
-  are used for production buildouts.
-  - ``index.html`` for development and loading required dependencies
-  (``emitter.js``, jQuery, backbone) async.
+- Requirejs  defaults application in ``index.js`` (note, .js not .html)
+  which are used for production buildouts. Dependencies such as 
+  ``emitter.js``, jQuery, backbone) are loaded async in dev version
+  without extra configuration.
 - Loading JS without buliding (dev, local, speed). As with above, on
   remote development (and of course production) turned off to just use
   builds.
