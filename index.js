@@ -2,7 +2,8 @@
 
 require.config({
   paths: {
-    "underscore": "./_vendor/bower_components/lodash/dist/lodash",
+    "t": "templates",
+    "underscore": "_vendor/bower_components/lodash/dist/lodash",
     "backbone": "_vendor/bower_components/backbone/backbone",
     "backbone-all": "lib/backbone-all",
     "backbone.noConflict": "lib/backbone.noConflict",
@@ -44,7 +45,17 @@ require.config({
   }
 });
 
-require(['underscore', 'jquery', 'backbone', 'mustache', 'EventEmitter', 'q', 'Github', 'util/window_log', 'bootstrap', 'text'], function (_, $, Backbone, Mustache, EventEmitter, Q, Github) {
+require([
+  'underscore', 'jquery', 'backbone', 'mustache',
+  'EventEmitter', 'q', 'Github', 
+  'text!t/profile-button.mustache', 'text!t/profile-text-box.mustache',
+  'text!t/repo-table.mustache', 'text!t/repo-table-row.mustache',
+  'util/window_log',
+  'bootstrap', 'text',
+], function (
+  _, $, Backbone, Mustache,
+  EventEmitter, Q, Github,
+  ProfileButtonTpl, ProfileTextBoxTpl, RepoTableTpl, RepoTableRowTpl) {
   var app = new Backbone.Marionette.Application();
 
   // Sample for handling the rendering
@@ -188,11 +199,11 @@ require(['underscore', 'jquery', 'backbone', 'mustache', 'EventEmitter', 'q', 'G
     }
   });
   var ProfileButton = Backbone.Marionette.ItemView.extend({
-    template: '<button>Pull</button>',
+    template: ProfileButtonTpl,
   });
 
   var ProfileTextBox = Backbone.Marionette.ItemView.extend({
-    template: 'Hi world, my name is <input id="wat" type="text" name="names" value="{{name}}"/>. {{name}}',
+    template: ProfileTextBoxTpl,
 
     events: {
       'change input#wat': 'changedInput',
