@@ -198,20 +198,25 @@ Moving this forward
 
 Deployment:
 
-- Fabric: Deployment of CSS and JS a way to push to a production environment. This
-  can be done via ``fabric`` in python. Requires python.
-- S3 / gulp push: pushing to a real server via ``sftp``, or by pushing to an ``s3`` or
-  ``cdn`` bucket.
+- Fabric: Deployment of CSS and JS a way to push to a production
+  environment. This can be done via ``fabric`` in python. Requires python.
+- S3 / gulp push: pushing to a real server via ``sftp``, or by pushing to
+  an ``s3`` or ``cdn`` bucket.
 
-Swappability of frameworks:
+Swappability of style frameworks:
 
 - This could use any framework. For instance, it could use `SASS bootstrap`_
   (which is an official port). Also, it could use `zurb`_ foundation..
 
+User Interface:
+
+- Carried forward: olishing can be done between `backbone.marionette`
+  renderings to improve the smoothness between async routines.
+
 Production speed improvements:
 
 - `jQuery` can support custom builds.
-- `Lo-Dash` (a.k.a. `lodash`_) can support custom builds.
+- `Lo-Dash` (a.k.a. `lodash`_) can support custom builds. 
 
 Todo
 ----
