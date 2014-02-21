@@ -78,6 +78,46 @@ require(['underscore', 'jquery', 'backbone', 'mustache', 'q', 'Github', 'util/wi
   // // render collaborators data
   // function renderCollaborators(data, type){ }
 
+  var emitter = new EventEmitter();
+  
+  function loadRepos(user){
+
+    // Create Marionette Repos Layout
+    // Create Marionette RepoTable, linked to collection of Repos
+    //  When empty, show ... Retreiving repos
+    // Then when Repo shows, Layout for each row
+    // Row has {{reponame}} <div class="branches"> which listens to view of
+    // branches, <div class="collaborators"> which listens to collection of
+    // collaborations. {{last update}}
+    // The script will be data bound, where Marionette will automatically fuse
+    // to listening to Collection and Models and show when data arrives.
+    emitter.emit('data.repos', repos);
+    repos.forEach(function(repo){
+      loadBranches(repo);
+      loadCollaborators(repo);
+    });
+    emitter.on('data.branches.*', renderBranches);
+    emitter.on('data.collaborators.*', renderCollaborators);
+  }
+  
+  function loadBranches(repo){
+    emitter.emit('data.branches.jquery', branches);
+  }
+  
+  function loadCollaborators(repo){
+    emitter.emit('data.collaborators.jquery', collaborators);
+  }
+  
+  // render repositories data
+  function renderBranches(data, type){ }
+  
+  // render branches data
+  function renderBranches(data, type){ }
+  
+  // render collaborators data
+  function renderCollaborators(data, type){ }
+
+
   // The above functions will be part of a modified Backbone.Model
   // User - Backbone.Model - gh user
   //   User.Repos (self.repos) is a Backbone.Collection of Repo which pulls the
