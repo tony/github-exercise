@@ -60,6 +60,8 @@ Build out (Production):
 
 - ``_static/index.js`` [built output] - finalized index.js wrapped with
   dependencies. ``$ gulp build``.
+- ``_static/index.js.map`` - javascript `source map`_ for debugging built
+  versions.
 - ``_static/app.css`` [built output] - app CSS, compiled *with* bootstrap
   ``$ gulp less``.
 - ``_static/img/`` - images
@@ -248,6 +250,7 @@ Todo
   livereloads for the JS and CSS files. Currently it just lints / reloads.
 - gulp task build to ./dist (index.html, app.js (or index.js, just naming)
   and app.js)
+- Minify buildouts of app.css and index.js.
 
 [1] Permissive licenses are freely available to reuse for our purposes.
 Using viral licensed software (LGPL, GPLv2/3) can trigger complicated
@@ -274,3 +277,4 @@ library to support loading in AMD (commonly used in browser), CommonJS
 .. _jQuery.ajax: https://api.jquery.com/jQuery.ajax/
 .. _CompositeView: https://github.com/marionettejs/backbone.marionette/blob/master/docs/marionette.compositeview.md
 .. _Moment.js: http://momentjs.com/
+.. _source map: https://docs.google.com/document/d/1U1RGAehQwRypUTovF1KRlpiOFze0b-_2gc6fAH0KY0k
