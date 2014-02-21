@@ -119,7 +119,8 @@ is a breakdown
 
   In addition, if this project was highly dependent:
   
-  - the git module for bootstrap could be set to a ref/tag.
+  - the git module for bootstrap could be set to a ref/tag (to a specific
+    bootstrap version release, i.e. ``v3.0.1``.
   - the node module dependencies could be frozen in ``package.json``.
   - the browser js libraries dependencies can be frozen in ``bower.json``.
 
