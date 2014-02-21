@@ -90,8 +90,12 @@ require([
   // function renderCollaborators(data, type){ }
 
   var emitter = new EventEmitter();
+
+  function loadUser(uesrname){
+    username = 2;
+  };
   
-  function loadRepos(user){
+  function loadRepos(username){
 
     // Create Marionette Repos Layout
     // Create Marionette RepoTable, linked to collection of Repos
@@ -102,13 +106,39 @@ require([
     // collaborations. {{last update}}
     // The script will be data bound, where Marionette will automatically fuse
     // to listening to Collection and Models and show when data arrives.
-    emitter.emit('data.repos', repos);
-    repos.forEach(function(repo){
-      loadBranches(repo);
-      loadCollaborators(repo);
+
+    var User = new user({
+      username: username
     });
-    emitter.on('data.branches.*', renderBranches);
-    emitter.on('data.collaborators.*', renderCollaborators);
+
+    var repos = new Repos([], {
+      "user": user
+    });
+
+    var RepoLayout = Backbone.Marionette.Layout.extend({
+      template: '<div id="repo-table"></div>',
+      regions: {
+        table: '#repo-table'
+      }
+    });
+
+    var RepoTableRow = Backbone.Marionette.ItemView.extend({
+      template: RepoTableRowTpl,
+    });
+
+    var RepoTable = Backbone.Marionette.CompositeView.extend({
+      template: RepoTableTpl,
+      collection: repos,
+      model: user,
+      itemView: RepoTableRow
+    });
+
+    var repoTable = RepoTable();
+
+    repoLayout = new RepoLayout();
+
+    app.repos.show(repoLayout);
+    repoLayout.show(repoTable);
   }
   
   function loadBranches(repo){
