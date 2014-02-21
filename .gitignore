@@ -1,3 +1,5 @@
 node_modules
 npm-debug.og
 bower_components
+
+_static/index.js
