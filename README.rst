@@ -105,7 +105,7 @@ Libraries Usage / Explanation
   usage: event passing between models/collection of GH data and DOM views.
 - `backbone.marionette`_
 
-  usage: CompositeView for table layout.
+  usage: `CompositeView` for table layout.
 
   explanation: created by Backbone-god Derick Bailey.
 
@@ -244,3 +244,4 @@ library to support loading in AMD (commonly used in browser), CommonJS
 .. _Lo-Dash: http://lodash.com
 .. _jQuery: http://jquery.org
 .. _jQuery.ajax: https://api.jquery.com/jQuery.ajax/
+.. _CompositeView: https://github.com/marionettejs/backbone.marionette/blob/master/docs/marionette.compositeview.md
