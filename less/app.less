@@ -37,16 +37,24 @@ body {
 
   #repos, #profile {
     .make-row();
-    .page-container-inner {
-      .make-xs-column(12);
-    }
 
-    .make-xs-column-offset(1);
-    .make-xs-column(10);
+    .make-xs-column-offset(2);
+    .make-xs-column(9);
 
     background: @body-bg;
     text-align:center;
 
   }
+
+  #repos {
+
+    #repo-table {
+      td {
+        text-align: left;
+      }
+    }
+
+  }
+
 
 }
