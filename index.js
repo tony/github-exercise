@@ -44,7 +44,7 @@ require.config({
   }
 });
 
-require(['underscore', 'jquery', 'backbone', 'mustache', 'q', 'Github', 'util/window_log', 'bootstrap', 'text'], function (_, $, Backbone, Mustache, Q, Github) {
+require(['underscore', 'jquery', 'backbone', 'mustache', 'EventEmitter', 'q', 'Github', 'util/window_log', 'bootstrap', 'text'], function (_, $, Backbone, Mustache, EventEmitter, Q, Github) {
   var app = new Backbone.Marionette.Application();
 
   // Sample for handling the rendering
@@ -142,7 +142,7 @@ require(['underscore', 'jquery', 'backbone', 'mustache', 'q', 'Github', 'util/wi
 
   });
 
-  var Branch = Repo.extend({
+  var Branch = Backbone.Model.extend(Repo, {
 
   });
 
