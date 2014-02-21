@@ -44,7 +44,7 @@ require.config({
   }
 });
 
-require(['underscore', 'jquery', 'backbone', 'q', 'Github', 'util/window_log', 'bootstrap', 'text'], function (_, $, Backbone, Q, Github) {
+require(['underscore', 'jquery', 'backbone', 'mustache', 'q', 'Github', 'util/window_log', 'bootstrap', 'text'], function (_, $, Backbone, Mustache, Q, Github) {
   var app = new Backbone.Marionette.Application();
 
   // Sample for handling the rendering
@@ -84,6 +84,41 @@ require(['underscore', 'jquery', 'backbone', 'q', 'Github', 'util/window_log', '
     auth: "oauth"
   });
 
+  Backbone.Marionette.Renderer.render = function(template, data) {
+    return Mustache.render(template, data);
+  };
+  app.addRegions({
+    main: "#app"
+  });
+
+  var MyModel = Backbone.Model.extend({
+
+  });
+
+  window.mymodel = new MyModel({
+    name: 'tony'
+  });
+
+  var UsernameInputView = Backbone.Marionette.ItemView.extend({
+    template: 'Hi world, my name is <input id="wat" type="text" name="names" value="{{name}}"/>. {{name}}',
+
+    events: {
+      'change input#wat': 'changedInput',
+      'click input#wat': 'changedInput'
+    },
+    changedInput: function(e) {
+      console.log($(e.currentTarget));
+    },
+    modelEvents: {
+      'change': 'render'
+    },
+    model: window.mymodel
+  });  // similar to Backbone.View
+
+  var usernameInputView = new UsernameInputView();
+
+
+
   window.gh = github;
 
   app.addInitializer(function (options) {
@@ -91,8 +126,9 @@ require(['underscore', 'jquery', 'backbone', 'q', 'Github', 'util/window_log', '
 
   });
 
+  app.main.show(usernameInputView);
+  app.start();
+
   console.log('Object JS loaded! ' + Date());
   return app;
 });
-
-
