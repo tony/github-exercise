@@ -89,19 +89,36 @@ require([
   // // render collaborators data
   // function renderCollaborators(data, type){ }
 
-  var User = new Backbone.Model.extend({
+  var User = Backbone.Model.extend({
     initialize: function(attributes, options) {
       // self.repos = new Repos({
         // 'username': attributes.username
       // });
     },
+    sync: function(method, model, options) {
+      var resp;
+      if (method !== 'GET') {
+        return Backbone.sync.apply(this, arguments);
+      }
+      console.log(model.get('username'));
+      gh.getUser(model.get('username'), function(err, resp) {
+        if (resp) {
+          options.success(resp);
+        } else {
+          options.error(err);
+        }
+      });
+
+    }
   });
 
-  var Repos = new Backbone.Collection.extend({
+  window.User = User;
+
+  var Repos = Backbone.Collection.extend({
     
   });
 
-  var Repo = new Backbone.Model.extend({
+  var Repo = Backbone.Model.extend({
 
   });
 
@@ -109,7 +126,7 @@ require([
 
   });
 
-  var Collaborators = new Backbone.Collection.extend({
+  var Collaborators = Backbone.Collection.extend({
     model: User
   });
 
@@ -132,9 +149,6 @@ require([
     // The script will be data bound, where Marionette will automatically fuse
     // to listening to Collection and Models and show when data arrives.
 
-    var User = new user({
-      username: username
-    });
 
     var repos = new Repos([], {
       "user": user
