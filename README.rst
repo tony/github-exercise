@@ -53,6 +53,14 @@ File layout:
 
 Why this layout?
 
+- Uses global configuration variables. Utilizes ``package.json`` variables
+  for gulp settings. This allows a clean, centralized place for dev
+  hostname and port variables to be configured.  Carried forward, a
+  ``.gitignore`` ignoring ``config.local.js`` could be mixed in with
+  ``package.json``'s ``pkg.gulp`` key to give the developer the option to
+  have their own project ports/hostnames, without conflicting with other
+  developer's git workflow or other ports/hostnames they are using for
+  development.
 - Allows loading via normal AMD modules.
 - During development, allows async loading of dependencies.
 - For productions, allows loading via a single, minified JS file. (wrapped
@@ -73,6 +81,13 @@ Why this layout?
   - the git module for bootstrap could be set to a ref/tag.
   - the node module dependencies could be frozen in ``package.json``.
   - the browser js libraries dependencies can be frozen in ``bower.json``.
+
+Moving this forward
+
+- Deployment of CSS and JS a way to push to a production environment. This
+  can be done via ``fabric`` in python, or a script in node. It can be done
+  via pushing to a real server via ``sftp``, or by pushing to an ``s3`` or
+  ``cdn`` bucket.
 
 [1] Permissive licenses are freely available to reuse for our purposes.
 Using viral licensed software (LGPL, GPLv2/3) can trigger complicated
