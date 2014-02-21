@@ -2,14 +2,13 @@
 Github Front-end Exercise
 =========================
 
-Tools required:
+Prerequisites
+-------------
 
 - NodeJS
 - Grunt, Bower ``$ [sudo] npm install -g grunt-cli bower``.
-
-Build tool:
-
-- gulp
+- git
+- command line
 
 Usage
 -----
@@ -27,12 +26,6 @@ Usage
 Upon final release, this project is also meant to be ran via the built CSS
 and JS files. If enough time, have gulp allow building a ``./dist`` with
 the latest ``index.html``, js and css build.
-
-Todo
-----
-
-- Trigger a stream of a newly built .css and .js in addition to
-  livereloads for the JS and CSS files. Currently it just lints / reloads.
 
 File layout
 -----------
@@ -220,6 +213,14 @@ Production speed improvements:
 
 - `jQuery` can support custom builds.
 - `Lo-Dash` (a.k.a. `lodash`_) can support custom builds.
+
+Todo
+----
+
+- Trigger a stream of a newly built .css and .js in addition to
+  livereloads for the JS and CSS files. Currently it just lints / reloads.
+- gulp task build to ./dist (index.html, app.js (or index.js, just naming)
+  and app.js)
 
 [1] Permissive licenses are freely available to reuse for our purposes.
 Using viral licensed software (LGPL, GPLv2/3) can trigger complicated
