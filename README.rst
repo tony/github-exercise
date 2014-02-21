@@ -123,6 +123,10 @@ is a breakdown
     bootstrap version release, i.e. ``v3.0.1``.
   - the node module dependencies could be frozen in ``package.json``.
   - the browser js libraries dependencies can be frozen in ``bower.json``.
+- Requirejs config in ``index.html`` for development and loading required
+  dependencies (``emitter.js``, jQuery, backbone) async.
+- Requirejs defaults application in ``index.js`` (note, .js not .html) which
+  are used for production buildouts.
 
 Moving this forward
 
