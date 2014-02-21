@@ -1,0 +1,108 @@
+﻿Front End Engineer Exercise: Gitmitter
+
+
+This exercise requires you to make use of data from GitHub’s API to construct a list of repositories in a table view. It is separated into 3 parts:
+
+
+1. Complete the implementation of EventEmitter in emitter.js
+2. Create a form for users to enter their GitHub info
+3. Asynchronously download and render repositories, collaborators, and branch data from the GitHub API into a table
+
+
+There are 3 files included as part of this exercise:
+1. emitter.js: script for the event handling library
+2. index.html: HTML for the form and the table
+3. index.js: for data download and rendering
+
+
+GitHub API endpoints required for this exercise:
+1. List repositories (https://api.github.com/users/USER/repos)
+2. List collaborators (https://api.github.com/repos/USER/REPO/collaborators)
+3. List branches (https://api.github.com/repos/USER/REPO/branches)
+
+
+NOTE:
+You are allowed to use any libraries that you use daily to complete Part 2 and Part 3 of this exercise, such as jQuery, Zurb Foundation, Twitter Bootstrap, or others. But you must use the event handling library implemented in Part 1 for the event handling.
+
+
+Part 1. Complete the implementation of EventEmitter in the emitter.js
+Open up emitter.js and implement the EventEmitter based on the documentation stated in the script.
+Part 2. Create a form for users to enter their GitHub info
+Create a form to allow users to enter their GitHub handle, similar to the sample below. Put the form in index.html
+
+
+Sample UI for the form:
+Github User: [ENTER GITHUB HANDLE      ] [Submit]
+
+
+
+
+Part 3. Asynchronously download and render repositories, collaborators, and branches data from GitHub API into a table overview
+
+
+After a user enters their GitHub handle into the form and clicks the [Submit] button, you will then send out Ajax requests to the GitHub API to download the repositories info, followed by collaborators and branches, asynchronously.
+
+
+Wire up this code in index.js and put all HTML code in index.html
+
+
+Steps:
+1. Download repositories info
+2. Render the table with the repositories info
+3. Go through each repository and send out requests to download data for collaborators and branches. Tip: we suggest you use someone who has a small number of repositories, else you will run up against API call limits quickly :( 
+4. For every repository send out asynchronous requests to fetch collaborators and branches info after you render the repository name and last update time
+5. When either collaborators or branches requests return, fire an event using the event handling library you implemented at Part 1 to render the info to the correct place in the table
+
+
+Sample UI for the table:
+|-------------------------------------------------------------------|
+| Project                | Collaborators      | Last Update         |
+|-------------------------------------------------------------------|
+| Repo Name A            | collaborator_a,    | 2014-02-19 12:30 PM |
+|  (branchh_a, branch_b) | collaborator_b     |                     |
+|-------------------------------------------------------------------|
+| Repo Name B            | collaborator_a,    | 2014-02-19 12:30 PM |
+|  (branchh_a, branch_b) | collaborator_b     |                     |
+|-------------------------------------------------------------------|
+| Repo Name C            | collaborator_a,    | 2014-02-19 12:30 PM |
+|  (branchh_a, branch_b) | collaborator_b     |                     |
+|-------------------------------------------------------------------|
+| Repo Name D            | collaborator_a,    | 2014-02-19 12:30 PM |
+|  (branchh_a, branch_b) | collaborator_b     |                     |
+|-------------------------------------------------------------------|
+
+
+
+
+________________
+
+
+Your final UI should look similar as below
+
+
+Github User: [ENTER GITHUB HANDLE      ] [Submit]
+
+
+|-------------------------------------------------------------------|
+| Project                | Collaborators      | Last Update         |
+|-------------------------------------------------------------------|
+| Repo Name A            | collaborator_a,    | 2014-02-19 12:30 PM |
+|  (branchh_a, branch_b) | collaborator_b     |                     |
+|-------------------------------------------------------------------|
+| Repo Name B            | collaborator_a,    | 2014-02-19 12:30 PM |
+|  (branchh_a, branch_b) | collaborator_b     |                     |
+|-------------------------------------------------------------------|
+| Repo Name C            | collaborator_a,    | 2014-02-19 12:30 PM |
+|  (branchh_a, branch_b) | collaborator_b     |                     |
+|-------------------------------------------------------------------|
+| Repo Name D            | collaborator_a,    | 2014-02-19 12:30 PM |
+|  (branchh_a, branch_b) | collaborator_b     |                     |
+|-------------------------------------------------------------------|
+
+
+
+
+Part 4. Delivery
+
+
+Put your code in a public git repo and email the repo info to hr007@favoritemedium.com
