@@ -57,10 +57,10 @@ Why this layout?
   for gulp settings. This allows a clean, centralized place for dev
   hostname and port variables to be configured.  Carried forward, a
   ``.gitignore`` ignoring ``config.local.js`` could be mixed in with
-  ``package.json``'s ``pkg.gulp`` key to give the developer the option to
-  have their own project ports/hostnames, without conflicting with other
-  developer's git workflow or other ports/hostnames they are using for
-  development.
+  ``package.json``'s default gulp settings (inside the ``pkg.gulp`` key)
+  to give the developer control of their own ports/hostnames, without
+  conflicting with other developer's git workflow + other ports/hostnames
+  they are using on that machine for development.
 - Allows loading via normal AMD modules.
 - During development, allows async loading of dependencies.
 - For productions, allows loading via a single, minified JS file. (wrapped
