@@ -278,135 +278,117 @@ require([
     }
   });
 
-  window.User = User;
 
-  var Branch = Backbone.Model.extend(Repo, {
+  var RepoLayout = Backbone.Marionette.Layout.extend({
+    template: '<div id="repo-table"></div>',
+    regions: {
+      table: '#repo-table'
+    }
+  });
+
+  var LoadingView = Backbone.Marionette.ItemView.extend({
+    template: 'Loading...'
+  });
+
+  var RepoBranchesItem = Backbone.Marionette.ItemView.extend({
+    tagName: 'a',
+    attributes: function() {
+      return {
+        href: Mustache.render('{{{ html_url }}}/tree/{{ name }}', {
+            html_url: this.model.repo.get('html_url'),
+            name: this.model.get('name')
+        })
+      }
+    },
+    className: 'btn btn-xs btn-primary',
+    template: '{{ name }}'
+  });
+
+  var RepoBranchesItems = Backbone.Marionette.CompositeView.extend({
+    emptyView: LoadingView,
+    itemView: RepoBranchesItem,
+    template: 'Branches: <span class="branch-list"></span>',
+    itemViewContainer: "span.branch-list",
 
   });
 
+  var RepoCollaboratorsItem = Backbone.Marionette.ItemView.extend({
+    tagName: 'a',
+    attributes: function() {
+      return {
+        href:  this.model.get('html_url')
+      }
+    },
+    className: 'btn btn-xs btn-success',
+    template: '{{ login }}'
+  });
 
-  var emitter = new EventEmitter();
+  var RepoCollaboratorsItems = Backbone.Marionette.CompositeView.extend({
+    tagName: 'span',
+    emptyView: LoadingView,
+    itemView: RepoCollaboratorsItem,
+    template: '<span class="collaborator-list"></span>',
+    itemViewContainer: "span.collaborator-list",
+  });
 
-  function loadUser(uesrname){
-    username = 2;
-  };
-  
+  var RepoTableRow = Backbone.Marionette.Layout.extend({
+    template: RepoTableRowTpl,
+    tagName: "tr",
+    regions: {
+      'branches': '.branches',
+      'collaborators': '.collaborators'
+    },
+    onShow: function() {
+      var branches = new RepoBranchesItems({
+        collection: this.model.branches,
+        model: this.model
+      });
+      this.branches.show(branches);
+      this.model.branches.fetch();
+      var collaborators = new RepoCollaboratorsItems({
+        collection: this.model.collaborators,
+        model: this.model
+      });
+      this.collaborators.show(collaborators);
+      this.model.collaborators.fetch();
+    }
+  });
+
+  var RepoTableRowEmpty = Backbone.Marionette.ItemView.extend({
+    template: RepoTableRowEmptyTpl,
+    tagName: "tr",
+  });
+
+
+  var RepoTable = Backbone.Marionette.CompositeView.extend({
+    template: RepoTableTpl,
+    emptyView: RepoTableRowEmpty,
+    itemView: RepoTableRow,
+    itemViewContainer: "tbody",
+  });
+
+  var emitter = new EventEmitter(); // just for fun. From step 1 of directions.
+
   function loadRepos(login){
-
-    // Create Marionette Repos Layout
-    // Create Marionette RepoTable, linked to collection of Repos
-    //  When empty, show ... Retreiving repos
-    // Then when Repo shows, Layout for each row
-    // Row has {{reponame}} <div class="branches"> which listens to view of
-    // branches, <div class="collaborators"> which listens to collection of
-    // collaborations. {{last update}}
-    // The script will be data bound, where Marionette will automatically fuse
-    // to listening to Collection and Models and show when data arrives.
-
-
     // Prepare Views as object in advance for data propagation.
 
+    // Instantiation User module.
     var user = new User({
       "login": login
     });
+
+    // Fetch initial user data
     user.fetch();
-    window.user = user;
 
     var repos = user.repos;
+
+    // Fetch repos for user.
     repos.fetch()
 
-    var RepoLayout = Backbone.Marionette.Layout.extend({
-      template: '<div id="repo-table"></div>',
-      regions: {
-        table: '#repo-table'
-      }
-    });
-
-
-    var LoadingView = Backbone.Marionette.ItemView.extend({
-      template: 'Loading...'
-    });
-
-    var RepoBranchesItem = Backbone.Marionette.ItemView.extend({
-      tagName: 'a',
-      attributes: function() {
-        return {
-          href: Mustache.render('{{{ html_url }}}/tree/{{ name }}', {
-              html_url: this.model.repo.get('html_url'),
-              name: this.model.get('name')
-          })
-        }
-      },
-      className: 'btn btn-xs btn-primary',
-      template: '{{ name }}'
-    });
-
-    var RepoBranchesItems = Backbone.Marionette.CompositeView.extend({
-      emptyView: LoadingView,
-      itemView: RepoBranchesItem,
-      template: 'Branches: <span class="branch-list"></span>',
-      itemViewContainer: "span.branch-list",
-
-    });
-
-    var RepoCollaboratorsItem = Backbone.Marionette.ItemView.extend({
-      tagName: 'a',
-      attributes: function() {
-        return {
-          href:  this.model.get('html_url')
-        }
-      },
-      className: 'btn btn-xs btn-success',
-      template: '{{ login }}'
-    });
-
-    var RepoCollaboratorsItems = Backbone.Marionette.CompositeView.extend({
-      tagName: 'span',
-      emptyView: LoadingView,
-      itemView: RepoCollaboratorsItem,
-      template: '<span class="collaborator-list"></span>',
-      itemViewContainer: "span.collaborator-list",
-    });
-
-    var RepoTableRow = Backbone.Marionette.Layout.extend({
-      template: RepoTableRowTpl,
-      tagName: "tr",
-      regions: {
-        'branches': '.branches',
-        'collaborators': '.collaborators'
-      },
-      onShow: function() {
-        var branches = new RepoBranchesItems({
-          collection: this.model.branches,
-          model: this.model
-        });
-        this.branches.show(branches);
-        this.model.branches.fetch();
-        var collaborators = new RepoCollaboratorsItems({
-          collection: this.model.collaborators,
-          model: this.model
-        });
-        this.collaborators.show(collaborators);
-        this.model.collaborators.fetch();
-      }
-    });
-
-    var RepoTableRowEmpty = Backbone.Marionette.ItemView.extend({
-      template: RepoTableRowEmptyTpl,
-      tagName: "tr",
-    });
-
-
-    var RepoTable = Backbone.Marionette.CompositeView.extend({
-      template: RepoTableTpl,
+    var repoTable = new RepoTable({
       collection: repos,
-      model: user,
-      emptyView: RepoTableRowEmpty,
-      itemView: RepoTableRow,
-      itemViewContainer: "tbody",
+      model: user
     });
-
-    var repoTable = new RepoTable();
 
     repoLayout = new RepoLayout();
 
