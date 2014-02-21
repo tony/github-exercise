@@ -325,14 +325,16 @@ require([
         'branches': '.branches',
         'collaborators': '.collaborators'
       },
-      initialize: function(options) {
+      onShow: function() {
         var branches = new RepoBranchesItems({
-          collection: this.model.branches
+          collection: this.model.branches,
+          model: this.model
         });
         this.branches.show(branches);
         this.model.branches.fetch();
         var collaborators = new RepoCollaboratorsItems({
-          collection: this.model.collaborators
+          collection: this.model.collaborators,
+          model: this.model
         });
         this.collaborators.show(collaborators);
         this.model.collaborators.fetch();
