@@ -53,6 +53,7 @@ File layout
 -----------
 
 - ``index.html``: index.html based on instructions.
+- ``index.static.html``: run the built version of application.
 - ``index.js``: AMD Format.
 
 Build out (Production):
