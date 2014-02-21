@@ -89,19 +89,25 @@ require([
   // // render collaborators data
   // function renderCollaborators(data, type){ }
 
+  var github = new Github({
+    token: "461b5636e8d8e58f6fccf71d65cd008571dda11b",
+    auth: "oauth"
+  });
+  window.gh = github;
+
   var User = Backbone.Model.extend({
-    initialize: function(attributes, options) {
-      // self.repos = new Repos({
-        // 'username': attributes.username
-      // });
+    initialize: function() {
+      // Include Github.User instance with Oauth token in context.
+      this.gh = gh.getUser();
     },
     sync: function(method, model, options) {
-      var resp;
-      if (method !== 'GET') {
+      // Override sync for read/GET to use Github.js.
+
+      if (method !== 'read') {
         return Backbone.sync.apply(this, arguments);
       }
-      console.log(model.get('username'));
-      gh.getUser(model.get('username'), function(err, resp) {
+      this.gh.show(model.get('login'), function(err, resp) {
+        
         if (resp) {
           options.success(resp);
         } else {
@@ -137,7 +143,7 @@ require([
     username = 2;
   };
   
-  function loadRepos(username){
+  function loadRepos(login){
 
     // Create Marionette Repos Layout
     // Create Marionette RepoTable, linked to collection of Repos
@@ -208,10 +214,7 @@ require([
 
 
 
-  var github = new Github({
-    token: "461b5636e8d8e58f6fccf71d65cd008571dda11b",
-    auth: "oauth"
-  });
+
 
   Backbone.Marionette.Renderer.render = function(template, data) {
     return Mustache.render(template, data);
@@ -279,7 +282,7 @@ require([
   profileInput.TextBox.show(profileTextBox);
   profileInput.Button.show(profileButton);
 
-  window.gh = github;
+
 
   app.addInitializer(function (options) {
     console.log('App started. ' + Date());
