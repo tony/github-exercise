@@ -14,6 +14,10 @@ Usage
 -----
 
 - Install pre-requesites (NodeJS, the grunt and bower packages)
+- ``$ git clone --recursive https://github.com/tony/github-exercise.git``.
+  Note: ``--recursive``, if supported by your git (likely) will make
+  next step unnecessary.
+- ``$ cd`` into the directory.
 - ``$ git submodule init && git submodule update`` (downloads bootstrap
   submodule).
 - ``$ npm install``
@@ -30,11 +34,19 @@ the latest ``index.html``, js and css build.
 Usage (no build required):
 --------------------------
 
-1. Open ``index.built.html`` in your web browser.
+Get: 
+
+a. Download zip: https://github.com/tony/github-exercise/archive/master.zip
+
+b. from git ``$ git clone https://github.com/tony/github-exercise.git``
+
+Open:
+
+a. Open ``index.built.html`` in your web browser.
 
 or
 
-2. ``$ python -m SimpleHTTPServer`` from project directory, navigate to
+b. ``$ python -m SimpleHTTPServer`` from project directory, navigate to
    http://localhost:8000/index.built.html.
 
 File layout
