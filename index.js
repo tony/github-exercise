@@ -48,14 +48,17 @@ require.config({
 require([
   'underscore', 'jquery', 'backbone', 'mustache',
   'EventEmitter', 'q', 'Github', 
-  'text!t/profile-button.mustache', 'text!t/profile-text-box.mustache',
+  'text!t/profile-input.mustache',
   'text!t/repo-table.mustache', 'text!t/repo-table-row.mustache',
+  'text!t/repo-table-row-empty.mustache',
   'util/window_log',
   'bootstrap', 'text',
 ], function (
   _, $, Backbone, Mustache,
   EventEmitter, Q, Github,
-  ProfileButtonTpl, ProfileTextBoxTpl, RepoTableTpl, RepoTableRowTpl) {
+  ProfileInputTpl,
+  RepoTableTpl, RepoTableRowTpl,
+  RepoTableRowEmptyTpl) {
   var app = new Backbone.Marionette.Application();
 
   // Sample for handling the rendering
@@ -102,11 +105,13 @@ require([
     },
     sync: function(method, model, options) {
       // Override sync for read/GET to use Github.js.
+      var login = model.get('login');
 
       if (method !== 'read') {
         return Backbone.sync.apply(this, arguments);
       }
-      this.gh.show(model.get('login'), function(err, resp) {
+
+      this.gh.show(login, function(err, resp) {
         
         if (resp) {
           options.success(resp);
@@ -156,6 +161,13 @@ require([
     // to listening to Collection and Models and show when data arrives.
 
 
+    // Prepare Views as object in advance for data propagation.
+
+    var user = new User({
+      "login": login
+    });
+    user.fetch();
+
     var repos = new Repos([], {
       "user": user
     });
@@ -169,22 +181,33 @@ require([
 
     var RepoTableRow = Backbone.Marionette.ItemView.extend({
       template: RepoTableRowTpl,
+      tagName: "tr",
     });
+
+    var RepoTableRowEmpty = Backbone.Marionette.ItemView.extend({
+      template: RepoTableRowEmptyTpl,
+      tagName: "tr",
+    });
+
 
     var RepoTable = Backbone.Marionette.CompositeView.extend({
       template: RepoTableTpl,
       collection: repos,
       model: user,
-      itemView: RepoTableRow
+      emptyView: RepoTableRowEmpty,
+      itemView: RepoTableRow,
+      itemViewContainer: "tbody",
     });
 
-    var repoTable = RepoTable();
+    var repoTable = new RepoTable();
 
     repoLayout = new RepoLayout();
 
     app.repos.show(repoLayout);
-    repoLayout.show(repoTable);
+    repoLayout.table.show(repoTable);
   }
+
+  window.loadRepos = loadRepos;
   
   function loadBranches(repo){
     emitter.emit('data.branches.jquery', branches);
@@ -233,33 +256,29 @@ require([
   });
 
   var ProfileLayout = Backbone.Marionette.Layout.extend({
-    template: '<div id="profile-layout">',
+    template: '<form id="profile-input"></form>',
     regions: {
-      input: '#profile-layout'
+      input: '#profile-input'
     }
   });
 
 
-  var ProfileInput = Backbone.Marionette.Layout.extend({
-    template: '<section><div id="profile-textbox"></div><div id="profile-button"></div></section>',
-    regions: {
-      TextBox: '#profile-textbox',
-      Button: '#profile-button'
-    }
-  });
-  var ProfileButton = Backbone.Marionette.ItemView.extend({
-    template: ProfileButtonTpl,
-  });
-
-  var ProfileTextBox = Backbone.Marionette.ItemView.extend({
-    template: ProfileTextBoxTpl,
-
+  var ProfileInput = Backbone.Marionette.ItemView.extend({
+    template: ProfileInputTpl,
+    className: 'input-group',
     events: {
-      'change input#wat': 'changedInput',
-      'click input#wat': 'changedInput'
+      'change input[type=text]': 'keyPress',
+      'click button': 'submitForm',
+      'submit': 'submitForm'
     },
-    changedInput: function(e) {
-      console.log($(e.currentTarget));
+    keyPress: function(e) {
+      if (e.keyBoard ==13) {
+        this.$('button').click();
+      }
+    },
+    submitForm: function(e) {
+      var login = this.$('input[type=text]').val();
+      loadRepos(login);
     },
     modelEvents: {
       'change': 'render'
@@ -272,15 +291,9 @@ require([
   app.profile.show(profile);
 
 
-
   var profileInput = new ProfileInput();
 
   profile.input.show(profileInput);
-
-  var profileTextBox = new ProfileTextBox();
-  var profileButton = new ProfileButton();
-  profileInput.TextBox.show(profileTextBox);
-  profileInput.Button.show(profileButton);
 
 
 
