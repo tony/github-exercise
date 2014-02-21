@@ -1,6 +1,6 @@
-==================================
-Favorite Medium Front-end Exercise
-==================================
+=========================
+Github Front-end Exercise
+=========================
 
 Tools required:
 
@@ -40,7 +40,8 @@ File layout:
   almond, etc).
 - ``_util``: js utility libraries
 - ``_util/emitter.js``: Event Emitter required by the instructions. Uses
-  `EventEmitter2`_ (License MIT [1]) to support wildcards.
+  `EventEmitter2`_ (License MIT [1]) to support wildcards. Wrapped into
+  `UMD`_ [2].
 - ``node_modules``: local node modules
 - ``package.json``: node project manifest, contains ``node_modules``
   dependencies. Used for ``$ npm install``.
@@ -73,10 +74,13 @@ Why this layout?
   - the node module dependencies could be frozen in ``package.json``.
   - the browser js libraries dependencies can be frozen in ``bower.json``.
 
-
-
-.. _EventEmitter2: https://github.com/asyncly/EventEmitter2
-
 [1] Permissive licenses are freely available to reuse for our purposes.
 Using viral licensed software (LGPL, GPLv2/3) can trigger complicated
 derivitive issues.
+[2] `UMD`_ is a triple win, it's a method of wrapping a javascript app or
+library to support loading in AMD (commonly used in browser), CommonJS
+(commonly used in node), and as a normal script in the browser.
+
+.. _EventEmitter2: https://github.com/asyncly/EventEmitter2
+.. _UMD: https://github.com/umdjs/umd
+
