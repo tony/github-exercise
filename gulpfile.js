@@ -104,4 +104,4 @@ gulp.task('watch', function() {
   gulp.watch('less/*.less', ['less'])
 });
 
-gulp.task('default', ['watch', 'server']);
+gulp.task('default', ['less', 'build', 'watch', 'server']);
