@@ -105,4 +105,4 @@ Github User: [ENTER GITHUB HANDLE      ] [Submit]
 Part 4. Delivery
 
 
-Put your code in a public git repo and email the repo info to hr007@favoritemedium.com
+Put your code in a public git repo and email the repo info to <rm>

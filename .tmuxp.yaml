@@ -1,7 +1,7 @@
-session_name: favmed-exercise
+session_name: github-exercise
 start_directory: ./
 windows:
-- window_name: favmed-exercise
+- window_name: github-exercise
   layout: main-horizontal
   focus: true
   options:
@@ -27,7 +27,7 @@ windows:
   panes:
   - shell_command: 
     - vim
-    - :e Front End Engineer Exercise [2014 Q1].txt
+    - :e Directions.txt
     - :Vex
     # - :sp emitter.js
     # - :vsp index.html
