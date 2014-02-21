@@ -214,6 +214,10 @@ Building:
   is two of them, which is a duplicative effort. It's confusing and can make
   front-end developer ignorant of their own tools.
 
+- Livereload is used for the CSS. When ``$ gulp`` is watching, altering
+  ``/less/app.less`` should build and update CSS without requiring a
+  refresh to the browser.
+
 .. _r.js: https://github.com/jrburke/r.js/
 .. _gruntjs/grunt-contrib-requirejs: https://github.com/gruntjs/grunt-contrib-requirejs
 .. _asciidisco/grunt-requirejs: https://github.com/asciidisco/grunt-requirejs
@@ -243,11 +247,18 @@ Production speed improvements:
 - `jQuery` can support custom builds.
 - `Lo-Dash` (a.k.a. `lodash`_) can support custom builds. 
 
+Remote site widgets:
+
+- This type of app can be built to be deployable on third-party websites
+  and use JSONP and/or easyxdm for cross-domain communication.
+
+  In addition ``.noConflict`` and UMD-wrapping, used carefully, will
+  prevent ``Backbone`` and ``jQuery`` from bleeding into clients'
+  global namespace.
+
 Todo
 ----
 
-- Trigger a stream of a newly built .css and .js in addition to
-  livereloads for the JS and CSS files. Currently it just lints / reloads.
 - gulp task build to ./dist (index.html, app.js (or index.js, just naming)
   and app.js)
 - Minify buildouts of app.css and index.js.
