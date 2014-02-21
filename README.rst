@@ -85,9 +85,21 @@ Internals:
 Libraries Usage / Explanation
 -----------------------------
 
-- `michael/github`_ (BSD Licensed)
+- `michael/github`_ (License: BSD)
 
-   explanation: wrapper around github API.
+  alterations: vendorized (kept locally in vcs) and wrapped into an
+  AMD-compatible format (not enough time to full umd).
+
+  massive time saver (considering API throttling PITA). solid library.
+
+  usage: used to pull information from gh. ``XMLHttpRequest`` in object
+  format.
+
+  alternative: If I hadn't used this module, something like `jQuery.ajax`_
+  would have been the go to alternative. Their api is friendly - the pain
+  point is their rate limit.
+
+  explanation: wrapper around github API.
 - `backbone`
 
   usage: event passing between models/collection of GH data and DOM views.
@@ -231,3 +243,4 @@ library to support loading in AMD (commonly used in browser), CommonJS
 .. _lodash: http://lodash.com
 .. _Lo-Dash: http://lodash.com
 .. _jQuery: http://jquery.org
+.. _jQuery.ajax: https://api.jquery.com/jQuery.ajax/
