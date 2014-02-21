@@ -414,45 +414,6 @@ require([
     repoLayout.table.show(repoTable);
   }
 
-  window.loadRepos = loadRepos;
-  
-  function loadBranches(repo){
-    emitter.emit('data.branches.jquery', branches);
-  }
-  
-  function loadCollaborators(repo){
-    emitter.emit('data.collaborators.jquery', collaborators);
-  }
-  
-  // render repositories data
-  function renderBranches(data, type){ }
-  
-  // render branches data
-  function renderBranches(data, type){ }
-  
-  // render collaborators data
-  function renderCollaborators(data, type){ }
-
-
-  // The above functions will be part of a modified Backbone.Model
-  // User - Backbone.Model - gh user
-  //   User.Repos (self.repos) is a Backbone.Collection of Repo which pulls the
-  //   latest repo information.
-  // Repo - Backbone.Model
-  //   Repo.Branches (self.branches) - bb collection of Branches.
-  //   Repo.Collaborators (self.collaborators) - bb collection of Collaborators.
-
-
-
-
-
-  Backbone.Marionette.Renderer.render = function(template, data) {
-    return Mustache.render(template, data);
-  };
-  app.addRegions({
-    repos: "#repos",
-    profile: "#profile"
-  });
 
   var ProfileLayout = Backbone.Marionette.Layout.extend({
     template: '<form id="profile-input"></form>',
@@ -490,16 +451,20 @@ require([
     model: new Backbone.Model
   });  // similar to Backbone.View
 
+  Backbone.Marionette.Renderer.render = function(template, data) {
+    return Mustache.render(template, data);
+  };
+
+  app.addRegions({
+    repos: "#repos",
+    profile: "#profile"
+  });
 
   var profile = new ProfileLayout()
   app.profile.show(profile);
 
-
   var profileInput = new ProfileInput();
-
   profile.input.show(profileInput);
-
-
 
   app.addInitializer(function (options) {
     console.log('App started. ' + Date());
@@ -507,6 +472,5 @@ require([
 
   app.start();
 
-  console.log('Object JS loaded! ' + Date());
   return app;
 });
