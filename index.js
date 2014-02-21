@@ -46,13 +46,11 @@ require(['underscore', 'jquery', 'backbone', 'q', 'util/window_log', 'bootstrap'
 
   app.addInitializer(function (options) {
     console.log('App started. ' + Date());
-    document.write('<script src="http://localhost:32883/livereload.js"></script>');
 
   });
 
   console.log('Object JS loaded! ' + Date());
-  console.log('hi5')
-  // return app;
+  return app;
 });
 
 console.log('JS File loaded!' + Date());

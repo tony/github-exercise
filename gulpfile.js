@@ -81,12 +81,7 @@ var serverAddress = "http://" + pkg.gulp.server.host + ":" + pkg.gulp.server.por
 
 gulp.task("server", function() {
   connect()
-    // .use(require("connect-livereload")({
-      // port: pkg.gulp.livereloadServer.port
-    // }))
     .use(connect.static(__dirname))
-    // .use(connect.static("_static", __dirname + "_static"))
-    // .use(connect.static("_vendor", __dirname + "_vendor"))
     .listen(pkg.gulp.server.port);
   gutil.log("Connect server running at " + serverAddress);
 });
@@ -100,7 +95,6 @@ gulp.task("server.open", function() {
 
 gulp.task('watch', function() {
   liveReloadCSS()
-  liveReloadJS()
   gulp.watch('less/*.less', ['less'])
 });
 
