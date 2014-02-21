@@ -46,6 +46,30 @@ File layout:
 - ``bower.json`` - Bower package manifest, used by ``$ bower install``.
 
 
+Why this layout?
+
+- Allows loading via normal AMD modules.
+- During development, allows async loading of dependencies.
+- For productions, allows loading via a single, minified JS file. (wrapped
+  in an almond, no ``require.js`` script tag is necessary, the almond wrap
+  compiles with ``window.require`` included.)
+- Get + build the latest updates for:
+
+  - Bootstrap
+  - Browser modules
+  - Utility modules (gulp)
+
+  This allows an isolated project (with flexibility to use the latest and
+  greatest modules) to update dependencies and features easily with lowest
+  cost possible.
+
+  In addition, if this project was highly dependent:
+  
+  - the git module for bootstrap could be set to a ref/tag.
+  - the node module dependencies could be frozen in ``package.json``.
+  - the browser js libraries dependencies can be frozen in ``bower.json``.
+
+
 
 .. _EventEmitter2: https://github.com/asyncly/EventEmitter2
 
