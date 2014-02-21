@@ -2,19 +2,22 @@
 
 require.config({
   paths: {
-    'underscore': './_vendor/bower_components/lodash/dist/lodash',
-    'backbone': '_vendor/bower_components/backbone-amd/backbone',
-    'backbone-all': 'lib/backbone-all',
-    'backbone.noConflict': 'lib/backbone.noConflict',
-    'backbone.marionette': '_vendor/bower_components/backbone.marionette/lib/core/amd/backbone.marionette',
-    'backbone.wreqr': '_vendor/bower_components/backbone.wreqr/lib/amd/backbone.wreqr',
-    'backbone.babysitter': '_vendor/bower_components/backbone.babysitter/lib/amd/backbone.babysitter',
-    'mustache': '_vendor/bower_components/mustache/mustache',
-    'jquery': '_vendor/bower_components/jquery/dist/jquery',
-    'bootstrap': '_vendor/bootstrap/dist/js/bootstrap.min',
-    'text': '_vendor/bower_components/text/text',
-    'q': '_vendor/bower_components/q/q'
-
+    "underscore": "./_vendor/bower_components/lodash/dist/lodash",
+    "backbone": "_vendor/bower_components/backbone-amd/backbone",
+    "backbone-all": "lib/backbone-all",
+    "backbone.noConflict": "lib/backbone.noConflict",
+    "backbone.marionette": "_vendor/bower_components/backbone.marionette/lib/core/amd/backbone.marionette",
+    "backbone.wreqr": "_vendor/bower_components/backbone.wreqr/lib/amd/backbone.wreqr",
+    "backbone.babysitter": "_vendor/bower_components/backbone.babysitter/lib/amd/backbone.babysitter",
+    "mustache": "_vendor/bower_components/mustache/mustache",
+    "jquery": "_vendor/bower_components/jquery/dist/jquery",
+    "bootstrap": "_vendor/bootstrap/dist/js/bootstrap.min",
+    "text": "_vendor/bower_components/text/text",
+    "q": "_vendor/bower_components/q/q",
+    "EventEmitter": "util/emitter",
+    //"Github": "_vendor/bower_components/github/github",
+    "Github": "_vendor/github",
+    "Base64": "_vendor/base64"
   },
   map: {
     '*': {
@@ -41,8 +44,10 @@ require.config({
   }
 });
 
-require(['underscore', 'jquery', 'backbone', 'q', 'util/window_log', 'bootstrap', 'text'], function (_, $, Backbone, Q) {
+require(['underscore', 'jquery', 'backbone', 'q', 'Github', 'util/window_log', 'bootstrap', 'text'], function (_, $, Backbone, Q, Github) {
   var app = new Backbone.Marionette.Application();
+
+  console.log(Github);
 
   // Sample for handling the rendering
   //
@@ -75,6 +80,12 @@ require(['underscore', 'jquery', 'backbone', 'q', 'util/window_log', 'bootstrap'
   // // render collaborators data
   // function renderCollaborators(data, type){ }
 
+  var github = new Github({
+    token: "461b5636e8d8e58f6fccf71d65cd008571dda11b",
+    auth: "oauth"
+  });
+
+  window.gh = github;
 
   app.addInitializer(function (options) {
     console.log('App started. ' + Date());
@@ -85,4 +96,4 @@ require(['underscore', 'jquery', 'backbone', 'q', 'util/window_log', 'bootstrap'
   return app;
 });
 
-console.log('JS File loaded!' + Date());
+
