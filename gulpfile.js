@@ -61,6 +61,14 @@ gulp.task('build', function(cb) {
 
 var liveReloadCSS = function() {
   var server = livereload(32882);
+  gulp.watch('./_static/app.css', function(evt) {
+      server.changed(evt.path);
+  });
+};
+
+
+var liveReloadLESS = function() {
+  var server = livereload(32882);
   gulp.watch('./less/*.less', function(evt) {
       server.changed(evt.path);
   });
@@ -70,6 +78,7 @@ var liveReloadJS = function() {
   var javascriptServer = livereload(32883);
   gulp.watch(['./app.js', '!./{node_modules,_vendor}/**'], function(evt) {
       javascriptServer.changed(evt.path);
+
   });
 };
 
