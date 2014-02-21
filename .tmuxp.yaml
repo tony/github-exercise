@@ -1,0 +1,38 @@
+session_name: favmed-exercise
+start_directory: ./
+windows:
+- window_name: favmed-exercise
+  layout: main-horizontal
+  focus: true
+  options:
+    main-pane-height: 40
+  # shell_command_before: 
+    # - '[ -d ./node_modules ] || npm install'
+    # - '[ -d ./app/bower_components ] || cd ./app; bower install;'
+  panes:
+  - shell_command: 
+    - vim
+    focus: true
+  - pane
+  - shell_command: 
+    - pane
+- window_name: directions
+  layout: main-horizontal
+  start_directory: _directions/
+  options:
+    main-pane-height: 40
+  # shell_command_before: 
+    # - '[ -d ./node_modules ] || npm install'
+    # - '[ -d ./app/bower_components ] || cd ./app; bower install;'
+  panes:
+  - shell_command: 
+    - vim
+    - :e Front End Engineer Exercise [2014 Q1].txt
+    - :Vex
+    # - :sp emitter.js
+    # - :vsp index.html
+    # - :sp index.js
+  - shell_command: 
+    - pane
+  - shell_command: 
+    - pane
