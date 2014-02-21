@@ -430,7 +430,10 @@ require([
     modelEvents: {
       'change': 'render'
     },
-    model: new Backbone.Model
+    model: new Backbone.Model,
+    onShow: function() {
+      var login = this.$('input[type=text]').focus();
+    }
   });  // similar to Backbone.View
 
   Backbone.Marionette.Renderer.render = function(template, data) {
