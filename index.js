@@ -18,7 +18,8 @@ require.config({
     "EventEmitter": "util/emitter",
     //"Github": "_vendor/bower_components/github/github",
     "Github": "_vendor/github",
-    "Base64": "_vendor/base64"
+    "Base64": "_vendor/base64",
+    "moment": "_vendor/bower_components/moment/moment"
   },
   map: {
     '*': {
@@ -47,7 +48,7 @@ require.config({
 
 require([
   'underscore', 'jquery', 'backbone', 'mustache',
-  'EventEmitter', 'q', 'Github', 
+  'EventEmitter', 'q', 'Github', 'moment',
   'text!t/profile-input.mustache',
   'text!t/repo-table.mustache', 'text!t/repo-table-row.mustache',
   'text!t/repo-table-row-empty.mustache',
@@ -55,7 +56,7 @@ require([
   'bootstrap', 'text',
 ], function (
   _, $, Backbone, Mustache,
-  EventEmitter, Q, Github,
+  EventEmitter, Q, Github, moment,
   ProfileInputTpl,
   RepoTableTpl, RepoTableRowTpl,
   RepoTableRowEmptyTpl) {
@@ -170,9 +171,11 @@ require([
         user: this.user,
         repo: this
       });
-
-      // this.collaborators.fetch();
-      // this.branches.fetch();
+    },
+    parse: function(resp) {
+      // format with updated_at from gh with moment.js.
+      resp['updated_at'] = moment(resp['updated_at']).format('YYYY-MM-DD hh:mm A')
+      return resp;
     },
     sync: function(method, collection, options) {
       // Override sync for read/GET to use Github.js.
