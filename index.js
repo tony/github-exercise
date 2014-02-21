@@ -98,6 +98,13 @@ require([
   });
   window.gh = github;
 
+  var RepoBranches = Backbone.Collection.extend({
+
+  });
+
+  var RepoCollaborators = Backbone.Collection.extend({
+
+  });
 
   var Repos = Backbone.Collection.extend({
     initialize: function(models, options) {
@@ -164,10 +171,6 @@ require([
 
   });
 
-  var Collaborators = Backbone.Collection.extend({
-    model: User
-  });
-
 
   var emitter = new EventEmitter();
 
@@ -206,9 +209,22 @@ require([
       }
     });
 
-    var RepoTableRow = Backbone.Marionette.ItemView.extend({
+
+    var RepoBranchesItem = Backbone.Marionette.CompositeView.extend({
+
+    });
+
+    var RepoCollaboratorsItem = Backbone.Marionette.CompositeView.extend({
+
+    });
+
+    var RepoTableRow = Backbone.Marionette.LayoutView.extend({
       template: RepoTableRowTpl,
       tagName: "tr",
+      regions: {
+        'branches': '.branches',
+        'collaborators': '.collaborators'
+      }
     });
 
     var RepoTableRowEmpty = Backbone.Marionette.ItemView.extend({
