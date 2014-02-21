@@ -88,7 +88,8 @@ require(['underscore', 'jquery', 'backbone', 'mustache', 'q', 'Github', 'util/wi
     return Mustache.render(template, data);
   };
   app.addRegions({
-    main: "#app"
+    repos: "#repos",
+    profile: "#profile"
   });
 
   var MyModel = Backbone.Model.extend({
@@ -99,7 +100,26 @@ require(['underscore', 'jquery', 'backbone', 'mustache', 'q', 'Github', 'util/wi
     name: 'tony'
   });
 
-  var UsernameInputView = Backbone.Marionette.ItemView.extend({
+  var ProfileLayout = Backbone.Marionette.Layout.extend({
+    template: '<div id="profile-layout">',
+    regions: {
+      input: '#profile-layout'
+    }
+  });
+
+
+  var ProfileInput = Backbone.Marionette.Layout.extend({
+    template: '<section><div id="profile-textbox"></div><div id="profile-button"></div></section>',
+    regions: {
+      TextBox: '#profile-textbox',
+      Button: '#profile-button'
+    }
+  });
+  var ProfileButton = Backbone.Marionette.ItemView.extend({
+    template: '<button>Pull</button>',
+  });
+
+  var ProfileTextBox = Backbone.Marionette.ItemView.extend({
     template: 'Hi world, my name is <input id="wat" type="text" name="names" value="{{name}}"/>. {{name}}',
 
     events: {
@@ -115,18 +135,27 @@ require(['underscore', 'jquery', 'backbone', 'mustache', 'q', 'Github', 'util/wi
     model: window.mymodel
   });  // similar to Backbone.View
 
-  var usernameInputView = new UsernameInputView();
+
+  var profile = new ProfileLayout()
+  app.profile.show(profile);
 
 
+
+  var profileInput = new ProfileInput();
+
+  profile.input.show(profileInput);
+
+  var profileTextBox = new ProfileTextBox();
+  var profileButton = new ProfileButton();
+  profileInput.TextBox.show(profileTextBox);
+  profileInput.Button.show(profileButton);
 
   window.gh = github;
 
   app.addInitializer(function (options) {
     console.log('App started. ' + Date());
-
   });
 
-  app.main.show(usernameInputView);
   app.start();
 
   console.log('Object JS loaded! ' + Date());
