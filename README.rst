@@ -82,6 +82,32 @@ Internals:
 - ``bower.json``: Bower package manifest, used by ``$ bower install``.
 
 
+Libraries Usage / Explanation
+-----------------------------
+
+- `michael/github`_ (BSD Licensed)
+
+   explanation: wrapper around github API.
+- `backbone`
+
+  usage: event passing between models/collection of GH data and DOM views.
+- `backbone.marionette`_
+
+  usage: CompositeView for table layout.
+
+  explanation: created by Backbone-god Derick Bailey.
+
+  other: `backbone.marionette annotated source`_
+- `lodash`_ (replacement for `underscore`_): utilities library. requirement
+
+  of backbone. Speed improvements. Browser consistency improvements. Carried
+  forward, potential for minimalized builds on production environments.
+- jQuery 2.x - suits job fine, required by backbone. Fast. Known by
+  many other devs. Carried forward, potential for speed improvements on
+  production environments.
+
+
+
 Why this layout
 ---------------
 
@@ -166,12 +192,22 @@ Building:
 Moving this forward
 -------------------
 
-- Deployment of CSS and JS a way to push to a production environment. This
-  can be done via ``fabric`` in python, or a script in node. It can be done
-  via pushing to a real server via ``sftp``, or by pushing to an ``s3`` or
+Deployment:
+
+- Fabric: Deployment of CSS and JS a way to push to a production environment. This
+  can be done via ``fabric`` in python. Requires python.
+- S3 / gulp push: pushing to a real server via ``sftp``, or by pushing to an ``s3`` or
   ``cdn`` bucket.
+
+Swappability of frameworks:
+
 - This could use any framework. For instance, it could use `SASS bootstrap`_
   (which is an official port). Also, it could use `zurb`_ foundation..
+
+Production speed improvements:
+
+- `jQuery` can support custom builds.
+- `Lo-Dash` (a.k.a. `lodash`_) can support custom builds.
 
 [1] Permissive licenses are freely available to reuse for our purposes.
 Using viral licensed software (LGPL, GPLv2/3) can trigger complicated
@@ -186,3 +222,12 @@ library to support loading in AMD (commonly used in browser), CommonJS
 .. _Grunt: http://www.gruntjs.org
 .. _gulp: http://gulpjs.com
 .. _zurb: https://github.com/zurb/foundation
+
+.. _michael/github: https://github.com/michael/github
+.. _underscore: http://underscorejs.org
+.. _backbone: http://backbonejs.org
+.. _backbone.marionette: https://github.com/marionettejs/backbone.marionette
+.. _backbone.marionette annotated source: http://marionettejs.com/docs/backbone.marionette.html
+.. _lodash: http://lodash.com
+.. _Lo-Dash: http://lodash.com
+.. _jQuery: http://jquery.org
