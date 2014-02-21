@@ -15,6 +15,7 @@
     "text": "latest",
     "q": "latest",
     "requirejs": "latest",
-    "lodash": "latest"
+    "lodash": "latest",
+    "moment": "latest"
   }
 }
