@@ -25,19 +25,7 @@ body {
   }
 }
 
-#app {
-  .make-row();
-  .page-container-inner {
-    .make-xs-column(12);
-  }
 
-  .make-xs-column-offset(1);
-  .make-xs-column(10);
-
-  background: @body-bg;
-  text-align:center;
-
-}
 
 #app-container {
 
@@ -45,6 +33,20 @@ body {
     background-color: #f5f5f5;
     text-align: left;
     padding: 2px 5px;
+  }
+
+  #repos, #profile {
+    .make-row();
+    .page-container-inner {
+      .make-xs-column(12);
+    }
+
+    .make-xs-column-offset(1);
+    .make-xs-column(10);
+
+    background: @body-bg;
+    text-align:center;
+
   }
 
 }

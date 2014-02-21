@@ -76,7 +76,7 @@ var liveReloadLESS = function() {
 
 var liveReloadJS = function() {
   var javascriptServer = livereload(32883);
-  gulp.watch(['./app.js', '!./{node_modules,_vendor}/**'], function(evt) {
+  gulp.watch(['./index.js', '!./{node_modules,_vendor}/**'], function(evt) {
       javascriptServer.changed(evt.path);
 
   });
@@ -104,6 +104,7 @@ gulp.task("server.open", function() {
 
 gulp.task('watch', function() {
   liveReloadCSS()
+  liveReloadJS()
   gulp.watch('less/*.less', ['less'])
 });
 
