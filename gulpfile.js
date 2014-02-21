@@ -22,19 +22,19 @@ gulp.task('lint', function() {
 });
 
 gulp.task('build', function(cb) {
-  console.log(rjs.optimize({
+  rjs.optimize({
     wrap: true,
     baseUrl: './',
     almond: true,
-    out: './static/app.js',
+    out: './_static/index.js',
     include: './app',
     mainConfigFile: './app.js',
     enforceDefine: true,
-    name: './bower_components/almond/almond',
+    name: './_vendor/bower_components/almond/almond',
     paths: {
-      'underscore': './bower_components/lodash/dist/lodash',
+      'underscore': './_vendor/bower_components/lodash/dist/lodash',
       'tpl': '../tpl',
-      'backbone': 'bower_components/backbone-amd/backbone',
+      'backbone': './_vendor/bower_components/backbone-amd/backbone',
     },
     map: {
       '*': {
@@ -50,9 +50,9 @@ gulp.task('build', function(cb) {
     shim: {
       'bootstrap': ['jquery']
     }}, function(buildResponse){
-        // console.log('build response', buildResponse);
+         console.log('build response', buildResponse);
         cb();
-      }, cb));
+      }, cb);
 });
 
 var liveReloadCSS = function() {

@@ -2,19 +2,19 @@
 
 require.config({
   paths: {
-    'underscore': './bower_components/lodash/dist/lodash',
+    'underscore': './_vendor/bower_components/lodash/dist/lodash',
     'tpl': '../tpl',
-    'backbone': 'bower_components/backbone-amd/backbone',
+    'backbone': '_vendor/bower_components/backbone-amd/backbone',
     'backbone-all': 'lib/backbone-all',
     'backbone.noConflict': 'lib/backbone.noConflict',
-    'backbone.marionette': 'bower_components/backbone.marionette/lib/core/amd/backbone.marionette',
-    'backbone.wreqr': 'bower_components/backbone.wreqr/lib/amd/backbone.wreqr',
-    'backbone.babysitter': 'bower_components/backbone.babysitter/lib/amd/backbone.babysitter',
-    'mustache': 'bower_components/mustache/mustache',
-    'jquery': 'bower_components/jquery/jquery',
-    'bootstrap': 'vendor/bootstrap/dist/js/bootstrap.min',
-    'text': 'bower_components/text/text',
-    'q': 'bower_components/q/q'
+    'backbone.marionette': '_vendor/bower_components/backbone.marionette/lib/core/amd/backbone.marionette',
+    'backbone.wreqr': '_vendor/bower_components/backbone.wreqr/lib/amd/backbone.wreqr',
+    'backbone.babysitter': '_vendor/bower_components/backbone.babysitter/lib/amd/backbone.babysitter',
+    'mustache': '_vendor/bower_components/mustache/mustache',
+    'jquery': '_vendor/bower_components/jquery/dist/jquery',
+    'bootstrap': '_vendor/bootstrap/dist/js/bootstrap.min',
+    'text': '_vendor/bower_components/text/text',
+    'q': '_vendor/bower_components/q/q'
 
   },
   map: {
