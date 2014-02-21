@@ -267,18 +267,23 @@ require([
     template: ProfileInputTpl,
     className: 'input-group',
     events: {
-      'change input[type=text]': 'keyPress',
+      'keydown': 'keyPress',
       'click button': 'submitForm',
       'submit': 'submitForm'
     },
     keyPress: function(e) {
-      if (e.keyBoard ==13) {
+      if (e.which === 13) {
+        e.preventDefault();
+        e.stopPropagation();
         this.$('button').click();
       }
     },
     submitForm: function(e) {
+      e.preventDefault();
+      e.stopPropagation();
       var login = this.$('input[type=text]').val();
       loadRepos(login);
+      return false;
     },
     modelEvents: {
       'change': 'render'
