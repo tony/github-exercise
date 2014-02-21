@@ -103,8 +103,73 @@ require([
   });
 
   var RepoCollaborators = Backbone.Collection.extend({
+    initialize: function(models, options) {
+      this.user = options.user || null; // backref to the user model.
+      this.repo = options.repo || null; // backref to repo model
+
+      // Include Github.User instance with Oauth token in context.
+      this.gh = gh.getRepo(this.user.get('login'), this.repo.get('name'));
+    },
+    sync: function(method, collection, options) {
+      // Override sync for read/GET to use Github.js.
+      //var login = collection.user.get('login');
+      var login = this.user.get('login');
+
+      if (method !== 'read') {
+        return Backbone.sync.apply(this, arguments);
+      }
+
+      this.gh.getCollaborators({}, function(err, resp) {
+        if (resp) {
+          options.success(resp);
+        } else {
+          options.error(err);
+        }
+      });
+
+    }
+  });
+
+  var Repo = Backbone.Model.extend({
+    initialize: function(models, options) {
+      // Include Github.User instance with Oauth token in context.
+      this.gh = gh.getUser();
+
+      this.user = this.collection.user || options.user || null; // backref to the user model.
+
+      this.collaborators = new RepoCollaborators([], {
+        user: this.user,
+        repo: this
+      });
+      this.branches = new RepoBranches([], {
+        user: this.user,
+        repo: this
+      });
+
+      this.collaborators.fetch();
+      // this.branches.fetch();
+    },
+    sync: function(method, collection, options) {
+      // Override sync for read/GET to use Github.js.
+      //var login = collection.user.get('login');
+      var login = this.user.get('login');
+
+      if (method !== 'read') {
+        return Backbone.sync.apply(this, arguments);
+      }
+
+      this.gh.userRepos(login, function(err, resp) {
+        if (resp) {
+          options.success(resp);
+        } else {
+          options.error(err);
+        }
+      });
+
+    }
 
   });
+
 
   var Repos = Backbone.Collection.extend({
     initialize: function(models, options) {
@@ -130,7 +195,8 @@ require([
         }
       });
 
-    }
+    },
+    model: Repo
   });
 
 
@@ -161,11 +227,6 @@ require([
   });
 
   window.User = User;
-
-
-  var Repo = Backbone.Model.extend({
-
-  });
 
   var Branch = Backbone.Model.extend(Repo, {
 
@@ -218,7 +279,7 @@ require([
 
     });
 
-    var RepoTableRow = Backbone.Marionette.LayoutView.extend({
+    var RepoTableRow = Backbone.Marionette.Layout.extend({
       template: RepoTableRowTpl,
       tagName: "tr",
       regions: {
