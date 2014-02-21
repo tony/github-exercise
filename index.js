@@ -301,21 +301,29 @@ require([
     });
 
     var RepoBranchesItem = Backbone.Marionette.ItemView.extend({
-      template: '<a href="{{ repo.html_url }}/tree/{{ name }}">{{ name }}</a>'
+      tagName: 'span',
+      template: '<a href="{{ repo.html_url }}/tree/{{ name }}">{{ name }}</a>, '
     });
 
     var RepoBranchesItems = Backbone.Marionette.CompositeView.extend({
       emptyView: LoadingView,
-      itemView: RepoBranchesItem
+      itemView: RepoBranchesItem,
+      template: 'Branches: <span class="branch-list"></span>',
+      itemViewContainer: "span.branch-list",
+
     });
 
     var RepoCollaboratorsItem = Backbone.Marionette.ItemView.extend({
-      template: '<a href="{{ html_url }}">{{ login }}</a>'
+      tagName: 'span',
+      template: '<a href="{{ html_url }}">{{ login }}</a>, '
     });
 
     var RepoCollaboratorsItems = Backbone.Marionette.CompositeView.extend({
+      tagName: 'span',
       emptyView: LoadingView,
-      itemView: RepoCollaboratorsItem
+      itemView: RepoCollaboratorsItem,
+      template: '<span class="collaborator-list"></span>',
+      itemViewContainer: "span.collaborator-list",
     });
 
     var RepoTableRow = Backbone.Marionette.Layout.extend({
