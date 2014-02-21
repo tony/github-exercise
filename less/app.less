@@ -2,7 +2,6 @@
 @flashcard-bg: #428bca;
 
 @import "bootstrap";
-@import "search";
 
 
 body {
@@ -29,11 +28,11 @@ body {
 #page-container {
   .make-row();
   .page-container-inner {
-    .make-column(12);
+    .make-xs-column(12);
   }
 
-  .make-column-offset(1);
-  .make-column(10);
+  .make-xs-column-offset(1);
+  .make-xs-column(10);
 
   background: @body-bg;
   text-align:center;
@@ -48,110 +47,4 @@ body {
     padding: 2px 5px;
   }
 
-  .make-row();
-
-
-  //background-color: #DDD;
-
-  .haha {
-    .clearfix();
-  }
-
-  .cards {
-
-    .make-column(10);
-    .make-column-offset(1);
-
-
-    .cards-inner {
-
-    }
-
-    .flashcard-container {
-      .make-column(4);
-      padding: 10px;
-
-      .flashcard-container__inner {
-
-        &:hover {
-          border-bottom: 0px;
-          box-shadow: 0 0 1px rgba(0,0,0,.3);
-          background-color: @flashcard-bg;
-        }
-
-        position: relative;
-        padding: 10px 13px 0;
-        border-radius: 4px;
-
-        -webkit-transition: all 200ms ease-in-out;
-        -moz-transition: all 200ms ease-in-out;
-        -o-transition: all 200ms ease-in-out;
-        transition: all 200ms ease-in-out;
-
-        .make-row();
-        .pinyin {
-          .make-column(12);
-          font-size: 80%;
-          color: #AAA;
-        }
-        .character {
-          .make-column(12);
-          color: #A11;
-        }
-      }
-    }
-  }
 }
-
-
-.cm-s-default .cm-keyword {color: #708;}
-.cm-s-default .cm-atom {color: #219;}
-.cm-s-default .cm-number {color: #164;}
-.cm-s-default .cm-def {color: #00f;}
-.cm-s-default .cm-variable {color: black;}
-.cm-s-default .cm-variable-2 {color: #05a;}
-.cm-s-default .cm-variable-3 {color: #085;}
-.cm-s-default .cm-property {color: black;}
-.cm-s-default .cm-operator {color: black;}
-.cm-s-default .cm-comment {color: #a50;}
-.cm-s-default .cm-string {color: #a11;}
-.cm-s-default .cm-string-2 {color: #f50;}
-.cm-s-default .cm-meta {color: #555;}
-.cm-s-default .cm-error {color: #f00;}
-.cm-s-default .cm-qualifier {color: #555;}
-.cm-s-default .cm-builtin {color: #30a;}
-.cm-s-default .cm-bracket {color: #997;}
-.cm-s-default .cm-tag {color: #170;}
-.cm-s-default .cm-attribute {color: #00c;}
-.cm-s-default .cm-header {color: blue;}
-.cm-s-default .cm-quote {color: #090;}
-.cm-s-default .cm-hr {color: #999;}
-.cm-s-default .cm-link {color: #00c;}
-
-.cm-negative {color: #d44;}
-.cm-positive {color: #292;}
-.cm-header, .cm-strong {font-weight: bold;}
-.cm-em {font-style: italic;}
-.cm-link {text-decoration: underline;}
-
-.cm-invalidchar {color: #f00;}
-
-/* GUTTER */
-
-.CodeMirror-gutters {
-  border-right: 1px solid #ddd;
-  background-color: #f7f7f7;
-  white-space: nowrap;
-}
-.CodeMirror-linenumbers {}
-.CodeMirror-linenumber {
-  padding: 0 3px 0 5px;
-  min-width: 20px;
-  text-align: right;
-  color: #999;
-
-  color: #A0A0A0;
-  color: #e6e6e6;
-}
-
-
