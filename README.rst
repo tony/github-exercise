@@ -24,7 +24,10 @@ File layout:
 - ``index.html``: index.html based on instructions.
 - ``index.js``: AMD Format
 - ``_static/index.js`` [built output] - finalized index.js wrapped with
-  dependencies.
+  dependencies. ``$ gulp build``.
+- ``_static/app.css`` [built output] - app CSS, compiled *with* bootstrap
+  ``$ gulp less``.
+- ``_static/img/`` - images
 - ``less``: less files
 
   - ``less/app.less``: main app CSS
