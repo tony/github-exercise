@@ -82,10 +82,13 @@ Internals:
 - ``bower.json``: Bower package manifest, used by ``$ bower install``.
 
 
-Why this layout?
+Why this layout
+---------------
 
 Best practices and patterns are useless without explanation of why. Here
-is a breakdown 
+is a breakdown:
+
+Project settings:
 
 - Uses global configuration variables. Utilizes ``package.json`` variables
   for gulp settings. This allows a clean, centralized place for dev
@@ -95,18 +98,9 @@ is a breakdown
   to give the developer control of their own ports/hostnames, without
   conflicting with other developer's git workflow + other ports/hostnames
   they are using on that machine for development.
-- Allows loading via normal AMD modules.
-- Linting JS
-- Loading LESS without building (dev, local, speed). If developing on a
-  remote (via ssh), this can be switched off to just use builds of
-  compiled css files.
-- Loading JS without buliding (dev, local, speed). As with above, on
-  remote development (and of course production) turned off to just use
-  builds.
-- During development, allows async loading of dependencies.
-- For productions, allows loading via a single, minified JS file. (wrapped
-  in an almond, no ``require.js`` script tag is necessary, the almond wrap
-  compiles with ``window.require`` included.)
+
+Dependency Libraries:
+
 - Get + build the latest updates for:
 
   - Bootstrap
@@ -123,17 +117,61 @@ is a breakdown
     bootstrap version release, i.e. ``v3.0.1``.
   - the node module dependencies could be frozen in ``package.json``.
   - the browser js libraries dependencies can be frozen in ``bower.json``.
-- Requirejs config in ``index.html`` for development and loading required
-  dependencies (``emitter.js``, jQuery, backbone) async.
-- Requirejs defaults application in ``index.js`` (note, .js not .html) which
+
+CSS:
+
+- Loading LESS without building (dev, local, speed). If developing on a
+  remote (via ssh), this can be switched off to just use builds of
+  compiled css files.
+- The same pattern applies to SASS.
+
+Javascript: 
+
+- Linting JS
+- Requirejs config:
+
+  - defaults application in ``index.js`` (note, .js not .html) which
   are used for production buildouts.
+  - ``index.html`` for development and loading required dependencies
+  (``emitter.js``, jQuery, backbone) async.
+- Loading JS without buliding (dev, local, speed). As with above, on
+  remote development (and of course production) turned off to just use
+  builds.
+- During development, allows async loading of dependencies.
+- Allows loading via normal AMD modules.
+- For productions, allows loading via a single, minified JS file. (wrapped
+  in an almond, no ``require.js`` script tag is necessary, the almond wrap
+  compiles with ``window.require`` included.)
+
+Building:
+
+- Uses `gulp`_. Gulp does the same tasks that `Grunt`_ is supposed to do
+  (buildouts, lints, watching files) but instead utilizes node's stream
+  and callbacks to provide blazing fast builds, often with less code.
+
+- Another cool thing about `gulp`_ is it's "closer to the roots", it often
+  passes in arguments directly to a build tool, instead of acting "special
+  things" on top, which can be misleading to developers.
+
+  For instance, gulp uses `r.js`_ for AMD builds directly. Grunt's
+  `gruntjs/grunt-contrib-requirejs`_ and `asciidisco/grunt-requirejs`_ both
+  hide the signature behind their own declarative language of options. And there
+  is two of them, which is a duplicative effort. It's confusing and can make
+  front-end developer ignorant of their own tools.
+
+.. _r.js: https://github.com/jrburke/r.js/
+.. _gruntjs/grunt-contrib-requirejs: https://github.com/gruntjs/grunt-contrib-requirejs
+.. _asciidisco/grunt-requirejs: https://github.com/asciidisco/grunt-requirejs
 
 Moving this forward
+-------------------
 
 - Deployment of CSS and JS a way to push to a production environment. This
   can be done via ``fabric`` in python, or a script in node. It can be done
   via pushing to a real server via ``sftp``, or by pushing to an ``s3`` or
   ``cdn`` bucket.
+- This could use any framework. For instance, it could use `SASS bootstrap`_
+  (which is an official port). Also, it could use `zurb`_ foundation..
 
 [1] Permissive licenses are freely available to reuse for our purposes.
 Using viral licensed software (LGPL, GPLv2/3) can trigger complicated
@@ -144,4 +182,7 @@ library to support loading in AMD (commonly used in browser), CommonJS
 
 .. _EventEmitter2: https://github.com/asyncly/EventEmitter2
 .. _UMD: https://github.com/umdjs/umd
-
+.. _SASS bootstrap: https://github.com/twbs/bootstrap-sass
+.. _Grunt: http://www.gruntjs.org
+.. _gulp: http://gulpjs.com
+.. _zurb: https://github.com/zurb/foundation
