@@ -251,10 +251,6 @@ require([
 
   });
 
-  window.mymodel = new MyModel({
-    name: 'tony'
-  });
-
   var ProfileLayout = Backbone.Marionette.Layout.extend({
     template: '<form id="profile-input"></form>',
     regions: {
@@ -288,7 +284,7 @@ require([
     modelEvents: {
       'change': 'render'
     },
-    model: window.mymodel
+    model: new Backbone.Model
   });  // similar to Backbone.View
 
 
