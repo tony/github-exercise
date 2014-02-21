@@ -78,6 +78,38 @@ require(['underscore', 'jquery', 'backbone', 'mustache', 'q', 'Github', 'util/wi
   // // render collaborators data
   // function renderCollaborators(data, type){ }
 
+  // The above functions will be part of a modified Backbone.Model
+  // User - Backbone.Model - gh user
+  //   User.Repos (self.repos) is a Backbone.Collection of Repo which pulls the
+  //   latest repo information.
+  // Repo - Backbone.Model
+  //   Repo.Branches (self.branches) - bb collection of Branches.
+  //   Repo.Collaborators (self.collaborators) - bb collection of Collaborators.
+
+  var User = new Backbone.Model.extend({
+    initialize: function(attributes, options) {
+      // self.repos = new Repos({
+        // 'username': attributes.username
+      // });
+    }
+  });
+
+  var Repos = new Backbone.Collection.extend({
+    
+  });
+
+  var Repo = new Backbone.Model.extend({
+
+  });
+
+  var Branch = Repo.extend({
+
+  });
+
+  var Collaborators = new Backbone.Collection.extend({
+    model: User
+  });
+
 
   var github = new Github({
     token: "461b5636e8d8e58f6fccf71d65cd008571dda11b",
