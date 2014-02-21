@@ -3,8 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <title>User repositories info from GitHub</title>
-
-  <script src="http://localhost:32882/livereload.js"></script>
+  <script>
+  var liveReloadPort = '32882';
+  document.write('<script src="http://' + (location.host ||
+    'localhost').split(':')[0] + ':' + liveReloadPort + '/livereload.js"></' +
+    'script>')
+  </script>
 
   <!-- Production
   <script src="/static/app.js"></script>
@@ -24,7 +28,7 @@
   <!-- Table for rendering repositories details -->
 
   <script src="_vendor/bower_components/requirejs/require.js" data-main="index"></script>
-
+r s
 </body>
 </html>
 

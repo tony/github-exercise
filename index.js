@@ -78,6 +78,7 @@ require(['underscore', 'jquery', 'backbone', 'q', 'Github', 'util/window_log', '
   // // render collaborators data
   // function renderCollaborators(data, type){ }
 
+
   var github = new Github({
     token: "461b5636e8d8e58f6fccf71d65cd008571dda11b",
     auth: "oauth"
