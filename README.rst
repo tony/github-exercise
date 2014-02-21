@@ -118,22 +118,31 @@ Libraries Usage / Explanation
   point is their rate limit.
 
   explanation: wrapper around github API.
-- `backbone`_
+- `backbone`_ (License: MIT)
 
   usage: event passing between models/collection of GH data and DOM views.
-- `backbone.marionette`_
 
-  usage: `CompositeView` for table layout.
+  see also: `backbone annotated source`_.
+- `backbone.marionette`_ (License: MIT)
 
-  explanation: created by Backbone-god Derick Bailey.
+  usage: `CompositeView` for table layout. Makes the ``emitter.js``
+  obsolete as:
+
+  1. Backbone already has `Backbone.Events`_.
+  2. Marionette's signal architecture with `Wreqr`_ brings enterprise
+     pubsub patterns to browser widgets. Marionette is essentially the
+     holy-grail for the View, Collection and Messaging architecture of bb.
+
+  explanation: created by Backbone-god Derick Bailey. Provides a
+  high-level toolkit of enterprise patterns for Backbone.
 
   other: `backbone.marionette annotated source`_
-- `lodash`_ (replacement for `underscore`_): utilities library. requirement
-
-  of backbone. Speed improvements. Browser consistency improvements. Carried
-  forward, potential for minimalized builds on production environments.
-- `Moment.js`_ - for time conversions
-- `jQuery`_ 2.x - all-around, required by backbone. Fast. Known by
+- `lodash`_ (License: MIT): replacement for `underscore`_: utilities
+  library. requirement of backbone. Speed improvements. Browser
+  consistency improvements. Carried forward, potential for minimalized
+  builds on production environments.
+- `Moment.js`_ (License: MIT) - for time conversions
+- `jQuery`_ 2.x (License: MIT) - all-around, required by backbone. Fast. Known by
   many other devs. Carried forward, potential for speed improvements on
   production environments.
 
@@ -274,12 +283,14 @@ library to support loading in AMD (commonly used in browser), CommonJS
 .. _Grunt: http://www.gruntjs.org
 .. _gulp: http://gulpjs.com
 .. _zurb: https://github.com/zurb/foundation
-
 .. _michael/github: https://github.com/michael/github
 .. _underscore: http://underscorejs.org
 .. _backbone: http://backbonejs.org
+.. _Backbone.Events: http://documentcloud.github.io/backbone/docs/backbone.html#section-13
+.. _backbone annotated source: http://documentcloud.github.io/backbone/docs/backbone.html
 .. _backbone.marionette: https://github.com/marionettejs/backbone.marionette
 .. _backbone.marionette annotated source: http://marionettejs.com/docs/backbone.marionette.html
+.. _Wreqr: http://marionettejs.com/docs/backbone.marionette.html#section-29
 .. _lodash: http://lodash.com
 .. _Lo-Dash: http://lodash.com
 .. _jQuery: http://jquery.org
