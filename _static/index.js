@@ -27698,7 +27698,7 @@ require([
           })
         }
       },
-      className: 'label label-primary',
+      className: 'btn btn-xs btn-primary',
       template: '{{ name }}'
     });
 
@@ -27717,7 +27717,7 @@ require([
           href:  this.model.get('html_url')
         }
       },
-      className: 'label label-success',
+      className: 'btn btn-xs btn-success',
       template: '{{ login }}'
     });
 
