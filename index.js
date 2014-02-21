@@ -47,8 +47,6 @@ require.config({
 require(['underscore', 'jquery', 'backbone', 'q', 'Github', 'util/window_log', 'bootstrap', 'text'], function (_, $, Backbone, Q, Github) {
   var app = new Backbone.Marionette.Application();
 
-  console.log(Github);
-
   // Sample for handling the rendering
   //
   // var emitter = new EventEmitter();
