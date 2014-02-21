@@ -27,6 +27,16 @@ Upon final release, this project is also meant to be ran via the built CSS
 and JS files. If enough time, have gulp allow building a ``./dist`` with
 the latest ``index.html``, js and css build.
 
+Usage (no build required):
+--------------------------
+
+1. Open ``index.built.html`` in your web browser.
+
+or
+
+2. ``$ python -m SimpleHTTPServer`` from project directory, navigate to
+   http://localhost:8000/index.built.html.
+
 File layout
 -----------
 
