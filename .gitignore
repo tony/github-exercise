@@ -1,0 +1,7 @@
+node_modules
+npm-debug.og
+bower_components
+
+_static/index.js
+_static/index.js.map
+_static/app.css

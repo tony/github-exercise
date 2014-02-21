@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>User repositories info from GitHub</title>
+
+  <script src="http://localhost:32882/livereload.js"></script>
+
+  <!-- Production
+  <script src="/static/app.js"></script>
+  -->
+  <script type="text/javascript">
+  // require.config({
+  var require = {
+    //baseUrl: './',
+    paths: {
+      bower_components: './_vendor/bower_components',
+      app: 'app',
+      tpl: 'tpl',
+      'underscore': 'bower_components/lodash/lodash',
+      'backbone': 'bower_components/backbone-amd/backbone',
+      'backbone-all': 'lib/backbone-all',
+      'backbone.noConflict': 'lib/backbone.noConflict',
+      'backbone.marionette': 'bower_components/backbone.marionette/lib/core/amd/backbone.marionette',
+      'backbone.wreqr': 'bower_components/backbone.wreqr/lib/amd/backbone.wreqr',
+      'backbone.babysitter': 'bower_components/backbone.babysitter/lib/amd/backbone.babysitter',
+      'backbone.iobind': 'vendor/backbone.iobind',
+      'backbone.iosync': 'vendor/backbone.iosync',
+      'mustache': 'bower_components/mustache/mustache',
+      'jquery': 'bower_components/jquery/jquery',
+      'bootstrap': 'vendor/bootstrap/docs/assets/js/bootstrap.min',
+      'text': 'bower_components/text/text',
+      'q': 'bower_components/q/q'
+    }
+  };
+  </script>
+  <link href="_static/app.css" type="text/css" rel="stylesheet" />
+  <!-- Development
+  <link rel="stylesheet/less" type="text/css" href="/assets/less/app.less" />
+   <script src="/assets/bower_components/less/dist/less-1.6.2.js"></script> -->
+   <!--Livereload less.js 
+    <script>less.watch();</script>
+  -->
+
+</head>
+<body class="background">
+  <!-- Form for entering GitHub handle -->
+
+  <!-- Table for rendering repositories details -->
+
+  <script src="_vendor/bower_components/requirejs/require.js" data-main="index"></script>
+
+</body>
+</html>
+
