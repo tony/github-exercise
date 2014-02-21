@@ -53,7 +53,7 @@ require.config({
   }
 });
 
-require(['underscore', 'jquery', 'backbone', 'q', 'collections/decks', 'collections/lessons', 'collections/Cards', 'models/Pager', 'util/window_log', 'bootstrap', 'text'], function (_, $, Backbone, Q, decks, lessons, Cards, Pager) {
+require(['underscore', 'jquery', 'backbone', 'q', 'util/window_log', 'bootstrap', 'text'], function (_, $, Backbone, Q) {
   var app = new Backbone.Marionette.Application();
 
   app.addInitializer(function (options) {
