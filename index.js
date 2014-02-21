@@ -98,10 +98,40 @@ require([
   });
   window.gh = github;
 
+
+  var Repos = Backbone.Collection.extend({
+    initialize: function(models, options) {
+      // Include Github.User instance with Oauth token in context.
+      this.gh = gh.getUser();
+
+      this.user = options.user || null; // backref to the user model.
+    },
+    sync: function(method, collection, options) {
+      // Override sync for read/GET to use Github.js.
+      //var login = collection.user.get('login');
+      var login = this.user.get('login');
+
+      if (method !== 'read') {
+        return Backbone.sync.apply(this, arguments);
+      }
+
+      this.gh.userRepos(login, function(err, resp) {
+        if (resp) {
+          options.success(resp);
+        } else {
+          options.error(err);
+        }
+      });
+
+    }
+  });
+
+
   var User = Backbone.Model.extend({
     initialize: function() {
       // Include Github.User instance with Oauth token in context.
       this.gh = gh.getUser();
+      this.repos = new Repos([], { user: this });
     },
     sync: function(method, model, options) {
       // Override sync for read/GET to use Github.js.
@@ -125,9 +155,6 @@ require([
 
   window.User = User;
 
-  var Repos = Backbone.Collection.extend({
-    
-  });
 
   var Repo = Backbone.Model.extend({
 
@@ -167,10 +194,10 @@ require([
       "login": login
     });
     user.fetch();
+    window.user = user;
 
-    var repos = new Repos([], {
-      "user": user
-    });
+    var repos = user.repos;
+    repos.fetch()
 
     var RepoLayout = Backbone.Marionette.Layout.extend({
       template: '<div id="repo-table"></div>',
@@ -245,10 +272,6 @@ require([
   app.addRegions({
     repos: "#repos",
     profile: "#profile"
-  });
-
-  var MyModel = Backbone.Model.extend({
-
   });
 
   var ProfileLayout = Backbone.Marionette.Layout.extend({
