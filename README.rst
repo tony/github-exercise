@@ -93,7 +93,7 @@ Libraries Usage / Explanation
   point is their rate limit.
 
   explanation: wrapper around github API.
-- `backbone`
+- `backbone`_
 
   usage: event passing between models/collection of GH data and DOM views.
 - `backbone.marionette`_
@@ -107,10 +107,9 @@ Libraries Usage / Explanation
 
   of backbone. Speed improvements. Browser consistency improvements. Carried
   forward, potential for minimalized builds on production environments.
-- jQuery 2.x - suits job fine, required by backbone. Fast. Known by
+- `jQuery`_ 2.x - all-around, required by backbone. Fast. Known by
   many other devs. Carried forward, potential for speed improvements on
   production environments.
-
 
 
 Why this layout
