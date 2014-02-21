@@ -28,15 +28,16 @@ body {
 
 
 #app-container {
+  .make-row();
 
-  #repos, #profile {
-    .make-row();
+  .make-xs-column-offset(3);
+  .make-xs-column(6);
 
-    .make-xs-column-offset(3);
-    .make-xs-column(6);
+  background: @body-bg;
+  text-align:center;
+  padding: 5px;
 
-    background: @body-bg;
-    text-align:center;
+  #repos, #profile, #header {
 
   }
 
