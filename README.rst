@@ -107,10 +107,10 @@ Libraries Usage / Explanation
 
   of backbone. Speed improvements. Browser consistency improvements. Carried
   forward, potential for minimalized builds on production environments.
+- `Moment.js`_ - for time conversions
 - `jQuery`_ 2.x - all-around, required by backbone. Fast. Known by
   many other devs. Carried forward, potential for speed improvements on
   production environments.
-
 
 Why this layout
 ---------------
@@ -250,3 +250,4 @@ library to support loading in AMD (commonly used in browser), CommonJS
 .. _jQuery: http://jquery.org
 .. _jQuery.ajax: https://api.jquery.com/jQuery.ajax/
 .. _CompositeView: https://github.com/marionettejs/backbone.marionette/blob/master/docs/marionette.compositeview.md
+.. _Moment.js: http://momentjs.com/
