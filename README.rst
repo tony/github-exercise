@@ -21,29 +21,30 @@ Usage:
 
 File layout:
 
-- ``index.html`` - index.html based on instructions.
-- ``index.js`` - AMD Format
+- ``index.html``: index.html based on instructions.
+- ``index.js``: AMD Format
 - ``_static/index.js`` [built output] - finalized index.js wrapped with
   dependencies.
-- ``less`` - less files
-  - ``less/app.less`` - main app CSS
-  - ``less/bootstrap.less`` - links together custom, stripped-down build
+- ``less``: less files
+
+  - ``less/app.less``: main app CSS
+  - ``less/bootstrap.less``: links together custom, stripped-down build
     of bootstrap.
-  - ``less/variables.less`` - customized bootstrap variables.
-- ``_vendor`` - third party libraries
+  - ``less/variables.less``: customized bootstrap variables.
+- ``_vendor``: third party libraries
 - ``_vendor/bootstrap`` (git submodule) - bootstrap
-- ``_vendor/bower_components`` - other browser JS libraries (bootstrap,
+- ``_vendor/bower_components``: other browser JS libraries (bootstrap,
   almond, etc).
-- ``_util`` - js utility libraries
-- ``_util/emitter.js`` - Event Emitter required by the instructions. Uses
+- ``_util``: js utility libraries
+- ``_util/emitter.js``: Event Emitter required by the instructions. Uses
   `EventEmitter2`_ (License MIT [1]) to support wildcards.
-- ``node_modules`` - local node modules
-- ``package.json`` - node project manifest, contains ``node_modules``
+- ``node_modules``: local node modules
+- ``package.json``: node project manifest, contains ``node_modules``
   dependencies. Used for ``$ npm install``.
-- ``gulpfile.js`` - Gulpfile (like Grunt). Used by ``gulp``
-- ``.bowerrc`` - For bower, sets download dir to
+- ``gulpfile.js``: Gulpfile (like Grunt). Used by ``gulp``
+- ``.bowerrc``: For bower, sets download dir to
   ``_vendor/bower_components``.
-- ``bower.json`` - Bower package manifest, used by ``$ bower install``.
+- ``bower.json``: Bower package manifest, used by ``$ bower install``.
 
 
 Why this layout?
