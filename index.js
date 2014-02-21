@@ -3,7 +3,7 @@
 require.config({
   paths: {
     "underscore": "./_vendor/bower_components/lodash/dist/lodash",
-    "backbone": "_vendor/bower_components/backbone-amd/backbone",
+    "backbone": "_vendor/bower_components/backbone/backbone",
     "backbone-all": "lib/backbone-all",
     "backbone.noConflict": "lib/backbone.noConflict",
     "backbone.marionette": "_vendor/bower_components/backbone.marionette/lib/core/amd/backbone.marionette",

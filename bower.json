@@ -7,7 +7,7 @@
     "less": "latest",
     "lodash": "latest",
     "almond": "latest",
-    "backbone-amd": "latest",
+    "backbone": "latest",
     "backbone.marionette": "latest",
     "backbone.wreqr": "latest",
     "backbone.babysitter": "latest",
