@@ -99,7 +99,18 @@ require([
   });
   window.gh = github;
 
+  var RepoBranch = Backbone.Model.extend({
+    initialize: function(models, options) {
+      this.user = this.collection.user || options.user || null; // backref to the user model.
+      this.repo = this.collection.repo || options.repo || null; // backref to repo model
+
+      // Include Github.User instance with Oauth token in context.
+      this.gh = gh.getRepo(this.user.get('login'), this.repo.get('name'));
+    },
+
+  });
   var RepoBranches = Backbone.Collection.extend({
+    model: RepoBranch,
     initialize: function(models, options) {
       this.user = options.user || null; // backref to the user model.
       this.repo = options.repo || null; // backref to repo model
@@ -128,7 +139,20 @@ require([
 
   });
 
+  var RepoCollaborator = Backbone.Model.extend({
+    initialize: function(models, options) {
+      this.user = this.collection.user || options.user || null; // backref to the user model.
+      this.repo = this.collection.repo || options.repo || null; // backref to repo model
+
+      // Include Github.User instance with Oauth token in context.
+      this.gh = gh.getRepo(this.user.get('login'), this.repo.get('name'));
+    },
+
+  });
+
+
   var RepoCollaborators = Backbone.Collection.extend({
+    model: RepoCollaborator,
     initialize: function(models, options) {
       this.user = options.user || null; // backref to the user model.
       this.repo = options.repo || null; // backref to repo model
@@ -304,8 +328,17 @@ require([
     });
 
     var RepoBranchesItem = Backbone.Marionette.ItemView.extend({
-      tagName: 'span',
-      template: '<a href="{{ repo.html_url }}/tree/{{ name }}">{{ name }}</a>, '
+      tagName: 'a',
+      attributes: function() {
+        return {
+          href: Mustache.render('{{{ html_url }}}/tree/{{ name }}', {
+              html_url: this.model.repo.get('html_url'),
+              name: this.model.get('name')
+          })
+        }
+      },
+      className: 'label label-primary',
+      template: '{{ name }}'
     });
 
     var RepoBranchesItems = Backbone.Marionette.CompositeView.extend({
@@ -317,8 +350,14 @@ require([
     });
 
     var RepoCollaboratorsItem = Backbone.Marionette.ItemView.extend({
-      tagName: 'span',
-      template: '<a href="{{ html_url }}">{{ login }}</a>, '
+      tagName: 'a',
+      attributes: function() {
+        return {
+          href:  this.model.get('html_url')
+        }
+      },
+      className: 'label label-success',
+      template: '{{ login }}'
     });
 
     var RepoCollaboratorsItems = Backbone.Marionette.CompositeView.extend({
