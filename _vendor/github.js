@@ -238,6 +238,20 @@
           });
         };
 
+        this.getCollaborators = function(options, cb) {
+          _request("GET", repoPath + "/collaborators", null, function(err, res) {
+            if (err) return cb(err);
+            cb(null, res);
+          });
+        };
+
+        this.getBranches = function(options, cb) {
+          _request("GET", repoPath + "/branches", null, function(err, res) {
+            if (err) return cb(err);
+            cb(null, res);
+          });
+        };
+
         // Create a new reference
         // --------
         //
