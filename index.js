@@ -99,6 +99,31 @@ require([
   window.gh = github;
 
   var RepoBranches = Backbone.Collection.extend({
+    initialize: function(models, options) {
+      this.user = options.user || null; // backref to the user model.
+      this.repo = options.repo || null; // backref to repo model
+
+      // Include Github.User instance with Oauth token in context.
+      this.gh = gh.getRepo(this.user.get('login'), this.repo.get('name'));
+    },
+    sync: function(method, collection, options) {
+      // Override sync for read/GET to use Github.js.
+      //var login = collection.user.get('login');
+      var login = this.user.get('login');
+
+      if (method !== 'read') {
+        return Backbone.sync.apply(this, arguments);
+      }
+
+      this.gh.getBranches({}, function(err, resp) {
+        if (resp) {
+          options.success(resp);
+        } else {
+          options.error(err);
+        }
+      });
+
+    }
 
   });
 
@@ -146,7 +171,7 @@ require([
         repo: this
       });
 
-      this.collaborators.fetch();
+      // this.collaborators.fetch();
       // this.branches.fetch();
     },
     sync: function(method, collection, options) {
@@ -271,12 +296,26 @@ require([
     });
 
 
-    var RepoBranchesItem = Backbone.Marionette.CompositeView.extend({
-
+    var LoadingView = Backbone.Marionette.ItemView.extend({
+      template: 'Loading...'
     });
 
-    var RepoCollaboratorsItem = Backbone.Marionette.CompositeView.extend({
+    var RepoBranchesItem = Backbone.Marionette.ItemView.extend({
+      template: '<a href="{{ repo.html_url }}/tree/{{ name }}">{{ name }}</a>'
+    });
 
+    var RepoBranchesItems = Backbone.Marionette.CompositeView.extend({
+      emptyView: LoadingView,
+      itemView: RepoBranchesItem
+    });
+
+    var RepoCollaboratorsItem = Backbone.Marionette.ItemView.extend({
+      template: '<a href="{{ html_url }}">{{ login }}</a>'
+    });
+
+    var RepoCollaboratorsItems = Backbone.Marionette.CompositeView.extend({
+      emptyView: LoadingView,
+      itemView: RepoCollaboratorsItem
     });
 
     var RepoTableRow = Backbone.Marionette.Layout.extend({
@@ -285,6 +324,18 @@ require([
       regions: {
         'branches': '.branches',
         'collaborators': '.collaborators'
+      },
+      initialize: function(options) {
+        var branches = new RepoBranchesItems({
+          collection: this.model.branches
+        });
+        this.branches.show(branches);
+        this.model.branches.fetch();
+        var collaborators = new RepoCollaboratorsItems({
+          collection: this.model.collaborators
+        });
+        this.collaborators.show(collaborators);
+        this.model.collaborators.fetch();
       }
     });
 
