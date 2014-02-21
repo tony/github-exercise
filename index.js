@@ -89,6 +89,31 @@ require([
   // // render collaborators data
   // function renderCollaborators(data, type){ }
 
+  var User = new Backbone.Model.extend({
+    initialize: function(attributes, options) {
+      // self.repos = new Repos({
+        // 'username': attributes.username
+      // });
+    },
+  });
+
+  var Repos = new Backbone.Collection.extend({
+    
+  });
+
+  var Repo = new Backbone.Model.extend({
+
+  });
+
+  var Branch = Backbone.Model.extend(Repo, {
+
+  });
+
+  var Collaborators = new Backbone.Collection.extend({
+    model: User
+  });
+
+
   var emitter = new EventEmitter();
 
   function loadUser(uesrname){
@@ -167,29 +192,6 @@ require([
   //   Repo.Branches (self.branches) - bb collection of Branches.
   //   Repo.Collaborators (self.collaborators) - bb collection of Collaborators.
 
-  var User = new Backbone.Model.extend({
-    initialize: function(attributes, options) {
-      // self.repos = new Repos({
-        // 'username': attributes.username
-      // });
-    }
-  });
-
-  var Repos = new Backbone.Collection.extend({
-    
-  });
-
-  var Repo = new Backbone.Model.extend({
-
-  });
-
-  var Branch = Backbone.Model.extend(Repo, {
-
-  });
-
-  var Collaborators = new Backbone.Collection.extend({
-    model: User
-  });
 
 
   var github = new Github({
