@@ -36,10 +36,6 @@ gulp.task('build', function(cb) {
     generateSourceMaps: true,
     preserveLicenseComments: false,
     optimize: "none",
-    paths: {
-      'underscore': './_vendor/bower_components/lodash/dist/lodash',
-      'backbone': './_vendor/bower_components/backbone-amd/backbone',
-    },
     map: {
       '*': {
         'backbone': 'backbone-all'
