@@ -105,8 +105,12 @@ Libraries Usage / Explanation
 
 - `michael/github`_ (License: BSD)
 
-  alterations: vendorized (kept locally in vcs) and wrapped into an
-  AMD-compatible format (not enough time to full umd).
+  alterations: 
+  
+  1. vendorized (kept locally in vcs) and wrapped into an
+     AMD-compatible format (not enough time to full umd).
+  2. added ``Github.Repository.prototype.getCollaborators`` and
+     ``Github.Repository.prototype.getBranches``.
 
   massive time saver (considering API throttling PITA). solid library.
 
