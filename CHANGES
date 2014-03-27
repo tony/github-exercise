@@ -1,0 +1,12 @@
+=======
+CHANGES
+=======
+
+March 27, 2014
+--------------
+
+- NPM Versions locked.
+- Upgraded connect to v3.0 + use serve-static middleware.
+
+
+.. note:: # vim: ft=rst

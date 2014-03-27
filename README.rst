@@ -2,6 +2,15 @@
 Github Front-end Exercise
 =========================
 
+Originally made for an interview, I've updated this project to serve as an
+example of gulp + less + twitter bootstrap + backbone +
+backbone.marionette.
+
+CHANGES
+-------
+
+See ``CHANGES``.
+
 Prerequisites
 -------------
 
