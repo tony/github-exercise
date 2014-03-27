@@ -81,12 +81,13 @@ var liveReloadJS = function() {
 ///
 // Static server
 ///
-var connect = require("connect")
-var serverAddress = "http://" + pkg.gulp.server.host + ":" + pkg.gulp.server.port + "/"
+var serveStatic = require("serve-static");
+var connect = require("connect");
+var serverAddress = "http://" + pkg.gulp.server.host + ":" + pkg.gulp.server.port + "/";
 
 gulp.task("server", function() {
   connect()
-    .use(connect.static(__dirname))
+    .use(serveStatic(__dirname))
     .listen(pkg.gulp.server.port);
   gutil.log("Connect server running at " + serverAddress);
 });
