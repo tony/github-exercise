@@ -36,6 +36,6 @@
     }
   },
   "scripts": {
-     "test": "./node_modules/.bin/karma start --single-run --browsers PhantomJS"
+     "test": "gulp build && ./node_modules/.bin/karma start --single-run --browsers PhantomJS"
   }
 }
