@@ -100,6 +100,22 @@ gulp.task("server.open", function() {
   gulp.src("./package.json")
     .pipe(require("gulp-open")("", {url: serverAddress}));
 });
+
+var karma = require('gulp-karma');
+
+
+gulp.task("test", ['build'], function() {
+  // Be sure to return the stream
+  return gulp.src(['undefined.js'])
+    .pipe(karma({
+      configFile: 'karma.conf.js',
+      action: 'run'
+    }))
+    .on('error', function(err) {
+      // Make sure failed tests cause gulp to exit non-zero
+      throw err;
+    });
+});
  
 
 gulp.task('watch', function() {

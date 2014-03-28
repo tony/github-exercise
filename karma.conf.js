@@ -20,7 +20,7 @@ module.exports = function(config) {
         // NOTE: do NOT include jasmine here because grunt-karma already does
         files: [
             {pattern: 'spec/app/app.js', included:false},
-            {pattern: '_static/index.js', included:false},
+            {pattern: '_static/app.js', included:false},
             'spec/runner.js',
         ],
 
