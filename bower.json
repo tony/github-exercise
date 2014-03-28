@@ -1,20 +1,36 @@
 {
-  "name": "github-exercise",
-  "version": "0.1.0",
-  "main": "app.js",
+  "name": "github_exercise",
+  "version": "0.2.0",
+  "homepage": "https://github.com/tony/github-exercise",
+  "authors": [
+    "Tony Narlock <tony@git-pull.com>"
+  ],
+  "description": "Example of gulp + karma + less + bootstrap + backbone and marionette.",
+  "main": "_static/app.js",
+  "moduleType": [
+    "amd"
+  ],
+  "keywords": [
+    "example"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "_vendor/bower_components",
+    "test",
+    "tests"
+  ],
   "dependencies": {
-    "jquery": "latest",
-    "less": "latest",
-    "lodash": "latest",
-    "almond": "latest",
-    "backbone": "latest",
-    "backbone.marionette": "latest",
-    "backbone.wreqr": "latest",
-    "backbone.babysitter": "latest",
-    "mustache": "latest",
-    "text": "latest",
-    "requirejs": "latest",
-    "lodash": "latest",
-    "moment": "latest"
+    "almond": "*",
+    "backbone.marionette": "~1.7.3",
+    "less": "~1.7.0",
+    "lodash": "~2.4.1",
+    "moment": "~2.5.1",
+    "mustache": "~0.8.1",
+    "requirejs": "~2.1.11",
+    "text": "~2.0.10"
   }
 }
