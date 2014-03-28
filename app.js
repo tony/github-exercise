@@ -3,7 +3,6 @@
 require.config({
   baseUrl: './',
   paths: {
-    "index": "index",
     "t": "templates",
     "underscore": "_vendor/bower_components/lodash/dist/lodash",
     "backbone": "_vendor/bower_components/backbone/backbone",

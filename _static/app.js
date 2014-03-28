@@ -27406,7 +27406,6 @@ define("bootstrap", function(){});
 require.config({
   baseUrl: './',
   paths: {
-    "index": "index",
     "t": "templates",
     "underscore": "_vendor/bower_components/lodash/dist/lodash",
     "backbone": "_vendor/bower_components/backbone/backbone",
@@ -27451,7 +27450,7 @@ require.config({
   }
 });
 
-define('index',[
+define('app',[
   'underscore', 'jquery', 'backbone', 'mustache',
   'EventEmitter', 'q', 'Github', 'moment',
   'text!t/profile-input.mustache',
@@ -27869,7 +27868,7 @@ define('index',[
     //this snippet. Ask almond to synchronously require the
     //module value for 'main' here and return it as the
     //value to use for the public API for the built file.
-    return require('index');
+    return require('app');
 }));
 
-//# sourceMappingURL=index.js.map
+//# sourceMappingURL=app.js.map
