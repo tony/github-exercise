@@ -13,7 +13,6 @@
     "backbone.babysitter": "latest",
     "mustache": "latest",
     "text": "latest",
-    "q": "latest",
     "requirejs": "latest",
     "lodash": "latest",
     "moment": "latest"
