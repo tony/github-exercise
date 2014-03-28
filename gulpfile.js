@@ -24,18 +24,21 @@ gulp.task('lint', function() {
 });
 
 gulp.task('build', function(cb) {
-  rjs.optimize({
-    wrap: true,
+  return rjs.optimize({
     baseUrl: './',
     almond: true,
-    out: './_static/index.js',
-    include: './index',
-    mainConfigFile: './index.js',
+    out: './_static/app.js',
+    include: './app',
+    mainConfigFile: './app.js',
     enforceDefine: true,
     name: './_vendor/bower_components/almond/almond',
     generateSourceMaps: true,
     preserveLicenseComments: false,
     optimize: "none",
+    wrap: {
+      startFile: 'lib/start.js',
+      endFile: 'lib/end.js'
+    },
     map: {
       '*': {
         'backbone': 'backbone-all'
@@ -52,7 +55,7 @@ gulp.task('build', function(cb) {
     }}, function(buildResponse){
          console.log('build response', buildResponse);
         cb();
-    }, cb);
+    });
 });
 
 var liveReloadCSS = function() {
@@ -72,7 +75,7 @@ var liveReloadLESS = function() {
 
 var liveReloadJS = function() {
   var javascriptServer = livereload(32883);
-  gulp.watch(['./index.js', '!./{node_modules,_vendor}/**'], function(evt) {
+  gulp.watch(['./app.js', '!./{node_modules,_vendor}/**'], function(evt) {
       javascriptServer.changed(evt.path);
 
   });
@@ -96,6 +99,22 @@ gulp.task("server.open", function() {
   // src is needed, but not used, cause of gulp way.
   gulp.src("./package.json")
     .pipe(require("gulp-open")("", {url: serverAddress}));
+});
+
+var karma = require('gulp-karma');
+
+
+gulp.task("test", ['build'], function() {
+  // Be sure to return the stream
+  return gulp.src(['undefined.js'])
+    .pipe(karma({
+      configFile: 'karma.conf.js',
+      action: 'run'
+    }))
+    .on('error', function(err) {
+      // Make sure failed tests cause gulp to exit non-zero
+      throw err;
+    });
 });
  
 

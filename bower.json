@@ -1,7 +1,7 @@
 {
   "name": "github-exercise",
   "version": "0.1.0",
-  "main": "index.js",
+  "main": "app.js",
   "dependencies": {
     "jquery": "latest",
     "less": "latest",
@@ -13,7 +13,6 @@
     "backbone.babysitter": "latest",
     "mustache": "latest",
     "text": "latest",
-    "q": "latest",
     "requirejs": "latest",
     "lodash": "latest",
     "moment": "latest"

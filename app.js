@@ -1,6 +1,7 @@
 /* global requirejs */
 
 require.config({
+  baseUrl: './',
   paths: {
     "t": "templates",
     "underscore": "_vendor/bower_components/lodash/dist/lodash",
@@ -14,7 +15,6 @@ require.config({
     "jquery": "_vendor/bower_components/jquery/dist/jquery",
     "bootstrap": "_vendor/bootstrap/dist/js/bootstrap.min",
     "text": "_vendor/bower_components/text/text",
-    "q": "_vendor/bower_components/q/q",
     "EventEmitter": "util/emitter",
     //"Github": "_vendor/bower_components/github/github",
     "Github": "_vendor/github",
@@ -46,9 +46,9 @@ require.config({
   }
 });
 
-require([
+define([
   'underscore', 'jquery', 'backbone', 'mustache',
-  'EventEmitter', 'q', 'Github', 'moment',
+  'EventEmitter', 'Github', 'moment',
   'text!t/profile-input.mustache',
   'text!t/repo-table.mustache', 'text!t/repo-table-row.mustache',
   'text!t/repo-table-row-empty.mustache',
@@ -56,7 +56,7 @@ require([
   'bootstrap', 'text',
 ], function (
   _, $, Backbone, Mustache,
-  EventEmitter, Q, Github, moment,
+  EventEmitter, Github, moment,
   ProfileInputTpl,
   RepoTableTpl, RepoTableRowTpl,
   RepoTableRowEmptyTpl) {
