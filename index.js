@@ -1,7 +1,9 @@
 /* global requirejs */
 
 require.config({
+  baseUrl: './',
   paths: {
+    "index": "index",
     "t": "templates",
     "underscore": "_vendor/bower_components/lodash/dist/lodash",
     "backbone": "_vendor/bower_components/backbone/backbone",
@@ -46,7 +48,7 @@ require.config({
   }
 });
 
-require([
+define([
   'underscore', 'jquery', 'backbone', 'mustache',
   'EventEmitter', 'q', 'Github', 'moment',
   'text!t/profile-input.mustache',

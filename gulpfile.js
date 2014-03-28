@@ -25,7 +25,6 @@ gulp.task('lint', function() {
 
 gulp.task('build', function(cb) {
   rjs.optimize({
-    wrap: true,
     baseUrl: './',
     almond: true,
     out: './_static/index.js',
@@ -36,6 +35,10 @@ gulp.task('build', function(cb) {
     generateSourceMaps: true,
     preserveLicenseComments: false,
     optimize: "none",
+    wrap: {
+      startFile: 'lib/start.js',
+      endFile: 'lib/end.js'
+    },
     map: {
       '*': {
         'backbone': 'backbone-all'
