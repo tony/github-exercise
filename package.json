@@ -34,5 +34,8 @@
     "livereloadServer": {
       "port": 32885
     }
+  },
+  "scripts": {
+     "test": "./node_modules/.bin/karma start --single-run --browsers PhantomJS"
   }
 }
