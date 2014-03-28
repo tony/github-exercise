@@ -7,32 +7,21 @@ module.exports = function(config) {
         // base path, that will be used to resolve files and exclude
         basePath: '',
 
-
         // frameworks to use
         frameworks: [
           'mocha',
           'requirejs',
-          'chai-sinon'
-          //'chai'
+          //'chai-sinon'
+          'chai'
         ],
 
 
         // list of files / patterns to load in the browser
         // NOTE: do NOT include jasmine here because grunt-karma already does
         files: [
+            {pattern: 'spec/app/app.js', included:false},
             {pattern: '_static/index.js', included:false},
-            {pattern: 'spec/**/*.js', included:false},
-
-            // {pattern: '_vendor/**/*', included: false},
-            // {pattern: 'lib/**/*', included: false},
-            // {pattern: 'templates/**/*', included: false},
-            // {pattern: 'util/**/*', included: false},
-            // {pattern: 'less/**/*', included: false},
-            // {pattern: 'node_modules/requirejs/require.js', included: false},
-            // {pattern: 'node_modules/**/*.js', included: false},
-            'spec/spechelper.js',
-
-
+            'spec/runner.js',
         ],
 
 
