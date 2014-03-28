@@ -27,9 +27,9 @@ gulp.task('build', function(cb) {
   rjs.optimize({
     baseUrl: './',
     almond: true,
-    out: './_static/index.js',
-    include: './index',
-    mainConfigFile: './index.js',
+    out: './_static/app.js',
+    include: './app',
+    mainConfigFile: './app.js',
     enforceDefine: true,
     name: './_vendor/bower_components/almond/almond',
     generateSourceMaps: true,
@@ -75,7 +75,7 @@ var liveReloadLESS = function() {
 
 var liveReloadJS = function() {
   var javascriptServer = livereload(32883);
-  gulp.watch(['./index.js', '!./{node_modules,_vendor}/**'], function(evt) {
+  gulp.watch(['./app.js', '!./{node_modules,_vendor}/**'], function(evt) {
       javascriptServer.changed(evt.path);
 
   });

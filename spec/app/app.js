@@ -1,5 +1,5 @@
 /* jshint -W030 */
-define(['index'], function(app) {
+define(['app'], function(app) {
   describe('App', function() {
 
       describe('Main object', function() {

@@ -16,11 +16,11 @@ for (var file in window.__karma__.files) {
   require.config({
     baseUrl: baseUrl,
     paths: {
-      "index": "_static/index"  
+      "app": "_static/app"  
     }
   });
   // Start the tests
   require(tests, function() {
     window.__karma__.start();
-    console.log('Tests ran:', tests);
+    // console.log('Tests ran:', tests);
   });
