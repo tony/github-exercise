@@ -2,6 +2,8 @@
 Github Front-end Exercise
 =========================
 
+.. image:: https://travis-ci.org/tony/github-exercise.svg?branch=karma_tests   :target: https://travis-ci.org/tony/github-exercise
+
 Originally made for an interview, I've updated this project to serve as an
 example of gulp + less + twitter bootstrap + backbone +
 backbone.marionette.
