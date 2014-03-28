@@ -17,7 +17,6 @@ module.exports = function(config) {
 
 
         // list of files / patterns to load in the browser
-        // NOTE: do NOT include jasmine here because grunt-karma already does
         files: [
             {pattern: 'spec/app/app.js', included:false},
             {pattern: '_static/app.js', included:false},

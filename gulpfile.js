@@ -24,7 +24,7 @@ gulp.task('lint', function() {
 });
 
 gulp.task('build', function(cb) {
-  rjs.optimize({
+  return rjs.optimize({
     baseUrl: './',
     almond: true,
     out: './_static/app.js',
@@ -55,7 +55,7 @@ gulp.task('build', function(cb) {
     }}, function(buildResponse){
          console.log('build response', buildResponse);
         cb();
-    }, cb);
+    });
 });
 
 var liveReloadCSS = function() {
