@@ -60,38 +60,12 @@ define([
   ProfileInputTpl,
   RepoTableTpl, RepoTableRowTpl,
   RepoTableRowEmptyTpl) {
-  var app = new Backbone.Marionette.Application();
 
-  // Sample for handling the rendering
-  //
-  // var emitter = new EventEmitter();
-  //
-  // function loadRepos(user){
-  //   emitter.emit('data.repos', repos);
-  //   repos.forEach(function(repo){
-  //     loadBranches(repo);
-  //     loadCollaborators(repo);
-  //   });
-  //   emitter.on('data.branches.*', renderBranches);
-  //   emitter.on('data.collaborators.*', renderCollaborators);
-  // }
-  //
-  // function loadBranches(repo){
-  //   emitter.emit('data.branches.jquery', branches);
-  // }
-  //
-  // function loadCollaborators(repo){
-  //   emitter.emit('data.collaborators.jquery', collaborators);
-  // }
-  //
-  // // render repositories data
-  // function renderBranches(data, type){ }
-  //
-  // // render branches data
-  // function renderBranches(data, type){ }
-  //
-  // // render collaborators data
-  // function renderCollaborators(data, type){ }
+  Backbone.Marionette.Renderer.render = function(template, data) {
+    return Mustache.render(template, data);
+  };
+
+  var app = new Backbone.Marionette.Application();
 
   var github = new Github({
     token: "461b5636e8d8e58f6fccf71d65cd008571dda11b",
@@ -109,6 +83,7 @@ define([
     },
 
   });
+
   var RepoBranches = Backbone.Collection.extend({
     model: RepoBranch,
     initialize: function(models, options) {
@@ -436,9 +411,6 @@ define([
     }
   });  // similar to Backbone.View
 
-  Backbone.Marionette.Renderer.render = function(template, data) {
-    return Mustache.render(template, data);
-  };
 
   app.addRegions({
     repos: "#repos",
