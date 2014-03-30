@@ -1,6 +1,6 @@
-=========================
-Github Front-end Exercise
-=========================
+====================
+Github API Front-End
+====================
 
 .. image:: https://travis-ci.org/tony/github-exercise.svg?branch=master :target: https://travis-ci.org/tony/github-exercise
 
