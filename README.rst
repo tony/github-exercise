@@ -2,7 +2,8 @@
 Github API Front-End
 ====================
 
-.. image:: https://travis-ci.org/tony/github-exercise.svg?branch=master :target: https://travis-ci.org/tony/github-exercise
+.. image:: https://travis-ci.org/tony/github-exercise.svg?branch=master
+    :target: https://travis-ci.org/tony/github-exercise
 
 Originally made for an interview, this project has been updated to serve
 as an example of gulp + less + twitter bootstrap + backbone + 
