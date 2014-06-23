@@ -2,6 +2,14 @@
 CHANGES
 =======
 
+June 23, 2014
+-------------
+
+- Bootstrap to bower dependencies
+- Lock Backbone.Wreqr, Backbone.Babysitter dependencies
+- Update Backbone.Marionette to 1.8
+- Update server server to use app.js
+
 March 27, 2014
 --------------
 
