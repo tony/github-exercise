@@ -3,7 +3,8 @@ Github API Front-End (broken)
 =============================
 
 This sample project utilizes a GitHub read-only API key to circumvent
-throttling.
+throttling. GitHub as of 3/10/2015 revokes api keys in repositories.
+This project is broken until a fix is made. 
 
 .. image:: https://travis-ci.org/tony/github-exercise.svg?branch=master
     :target: https://travis-ci.org/tony/github-exercise
