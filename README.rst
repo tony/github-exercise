@@ -1,6 +1,9 @@
-====================
-Github API Front-End
-====================
+=============================
+Github API Front-End (broken)
+=============================
+
+This sample project utilizes a GitHub read-only API key to circumvent
+throttling.
 
 .. image:: https://travis-ci.org/tony/github-exercise.svg?branch=master
     :target: https://travis-ci.org/tony/github-exercise
